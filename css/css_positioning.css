@@ -1,0 +1,56 @@
+
+/*note in css*/
+
+.box{
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    margin-top: 30px;
+    margin-bottom:20px;
+    margin-right: 50px;
+    padding: 10px;
+    float: left;
+    font-size: 14px;
+    position:relative;
+}
+
+.box>img{
+    position: absolute;
+    top:-35px;
+    right:-35px;
+
+}
+
+#box-red{
+    background-color: red;
+}
+
+#box-orange{
+    background-color: orange;
+
+}
+
+#box-yellow{
+    background-color: #fff08c;
+
+}
+
+#box-green{
+    background-color: green;
+    clear: left;
+}
+
+#box-blue{
+    background-color: blue;
+
+}
+
+#box-violet {
+    background-color: violet;
+
+}
+
+#header1 a:hover{
+    color: red;
+    transition: all 03.50s;
+}
