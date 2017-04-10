@@ -5,6 +5,50 @@
     <title>while loop js</title>
 </head>
 <body>
-    <script src="js/while_loop.js"></script>
+    <!-- <script src="js/while_loop.js"></script> -->
+
+ <script>
+
+
+     var allCones = Math.floor(Math.random() * 50) + 50;
+         console.log("today you must sell: " +allCones+ " ice cream cones.");
+
+     var i=allCones;
+
+      do{
+
+
+          var cones = Math.floor(Math.random() * 5) + 1;
+          console.log("cust just asked for "+cones+" cones");
+
+
+          i = i-cones;
+
+          console.log("we still have this many to sell: "+i);
+      }
+      while(i > 0);
+
+
+
+
+
+<!--
+      var cones = Math.floor(Math.random() * 5) + 1;
+         console.log("number of cones this customer purchased is: "+cones);
+
+         if (allCones-cones==0){
+             console.log("you asked for: "+cones+" we only have" +allCones+ " remaining ");
+         }else {
+             console.log("here are your cones")
+             allCones=allCones-cones;
+
+            custCount=custCount+1;
+                console.log("number of customers today: "+custCount);
+                console.log("we have " +allCones+ "cones left to sell today.");
+         }
+     -->
+
+ </script>
+
 </body>
 </html>
