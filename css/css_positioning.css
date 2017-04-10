@@ -31,13 +31,13 @@
 }
 
 #box-yellow{
-    background-color: #fff08c;
+    background-color: yellow;
 
 }
 
 #box-green{
     background-color: green;
-    clear: left;
+    /*clear: left;*/
 }
 
 #box-blue{
@@ -52,5 +52,5 @@
 
 #header1 a:hover{
     color: red;
-    transition: all 03.50s;
+    transition: all 03.00s;
 }
