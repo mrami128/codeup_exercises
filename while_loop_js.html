@@ -9,36 +9,45 @@
 
  <script>
 
+//generate random qty of cones needed to sell today
 
      var allCones = Math.floor(Math.random() * 50) + 50;
          console.log("today you must sell: " +allCones+ " ice cream cones.");
 
-     allCones;
 
-      do {
+// start a DoWhile Loop //
+
+     do {
+
+//generate random qty of cones requested//
 
           var cones = Math.floor(Math.random() * 5) + 1;
           console.log("cust just asked for " + cones + " cones");
 
+// update Cone Inventory //
 
           allCones = allCones - cones;
 
 
-          if (allCones == 0){
-              console.log(" Yeah!! we sold exact number of cones required");break
-          }
-          if (allCones < 0) {
-              console.log("we do not have: " + cones);
-              console.log("but I will sell you my last: "+(-(allCones*-1-cones))+" at 50% discount?");
-              break
-          } else {
-              console.log("we still have this many to sell: " + allCones);
 
-          }
+                if (allCones == 0){
+                    console.log(" Yeah!! we sold exact number of cones required");break
+                }
+                if (allCones < 0) {
+                    console.log("We do not have: " + cones);
+                    console.log("but I will sell you my last: "+(-(allCones*-1-cones))+" at 50% discount?");
+                break
+                } else {
+                    console.log("we still have this many to sell: " + allCones);
+                }
       }while(allCones > 0);
-          console.log("task complete");
+        console.log("task complete");
 
-<!--    +(-(allCones*-1-cones))+  -->
+
+//
+//  var number=2;
+//  while(num<=265536)
+//   { consl.log (number)}) number =numb*2 //
 
  </script>
 
