@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    "use strict";
+
+    (function(){
+
+        var fruits=[];
+
+        fruits.push("banana");   // push -onto end of array---pop delete last
+        fruits.push("apple");
+
+        fruits.unshift("watermelon-unshft"); // unshft -adds to beginning ----shift removes first
+
+        //this can generate Xqty of fruits to push into array to see if your program will break
+        for(var i=0;i<100;i++){
+            fruits.push('fruit'+i);
+        }
+
+        //this will show the console log of fruit pushed and the index number..for testing mostly
+        fruits.forEach(function (el,i)
+        { console.log(el,'index',i);
+        });
+
+        //search for specific
+        var looking = fruits.indexOf('fruit 50");
+        console.log(looking);
+        console.log(fruit[looking]);
+
+    })();
+
+</script>
+
+
+</body>
+</html>
