@@ -32,29 +32,29 @@
 
                 console.log('Removing "The Sun" from the beginning of the planets array.');
 
-                 planets.shift('Sun');           // TODO: Read the console.log() statement above. Write code to perform the step it describes.
+                 planets.shift('Sun');
                 logPlanets();
 
-                console.log('Removing "Pluto" from the end of the planets array.');
+    console.log('Removing "Pluto" from the end of the planets array.');
 
-                 planets.pop('Pluto');        // TODO: Read the console.log() statement above. Write code to perform the step it describes.
-                logPlanets();
+            planets.pop('Pluto');
+            logPlanets();
 
-                console.log('Finding and logging the index of "Earth" in the planets array.');
-                                                // TODO: Read the console.log() statement above. Write code to perform the step it describes.
-    var looking = planets.indexOf('Earth');
-    console.log(looking,planets[looking]);
-    //   also can be separate line item ---> console.log(planets[looking]);
-    // another option-- var indexofEarth=planets.indexOf('earth');
-    //                  console.log('indexofEarth');
+    console.log('Finding and logging the index of "Earth" in the planets array.');
+
+        var looking = planets.indexOf('Earth');
+        console.log(looking,planets[looking]);
+            //   also can be separate line item ---> console.log(planets[looking]);
+            //   another option-- var indexofEarth=planets.indexOf('earth');
+            //                    console.log('indexofEarth');
 
 
-      console.log('Using splice to remove the planet after "Earth".');
+    console.log('Using splice to remove the planet after "Earth".');
 
            planets.splice(planets.indexOf('earth') + 1, 1 );
            logPlanets();
 
-      console.log('Using splice to add back the planet after "Earth".');
+    console.log('Using splice to add back the planet after "Earth".');
 
             planets.splice(planets.indexOf('Earth') + 1, 0, 'Mars','Jupiter');
             logPlanets();
@@ -64,12 +64,12 @@
             planets.reverse();
             logPlanets();
 
-     console.log("Sorting the planets array.");
+    console.log("Sorting the planets array.");
 
             planets.sort();
             logPlanets();
 
-     console.log('============');
+    console.log('============');
 
     var namesArray = ['Joe', 'Bob', 'Sally'];
 
@@ -79,7 +79,7 @@
     var namesString = namesArray.join(',');
 
     console.log(namesString);
-// Joe,Bob,Sally
+        // Joe,Bob,Sally
 
 
 })();
