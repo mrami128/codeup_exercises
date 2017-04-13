@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First HTML Form</title>
+
+    <style>
+        .fancy-header{
+            color: red;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <p>
+
+    <input type="hidden" name="ssn" value="36496024" >
+
+    <form method="POST" action="http://requestb.in/18rmgoz1">
+
+    <label for="username"> Username: </label>
+    <input type="text" id="username" name="username">
+    <br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <br><br>
+    <!-- < input type = "submit" value="Login">  -->
+    <button>SEND</button>
+
+    <p>
+
+    <h3> Choose your favorite color: </h3>
+
+    <label for="blue"> Blue </label>
+    <input id="blue" type="checkbox" name="color" value="blue">
+
+    <label for="red">RED</label>
+    <input id="red" type="checkbox" name="color" value="red">
+
+    <label for="yellow">Yellow</label>
+    <input id="yellow" type="checkbox" name="color" value="yellow">
+
+    <label for="orange">Orange</label>
+    <input id="orange" type="checkbox" name="color" value="orange">
+
+
+    <h3>What day is it?</h3>
+
+    <label for="mon">mon</label>
+    <input id="mon" type="radio" name="day" value="1">
+
+    <label for="tue">tue</label>
+    <input id="tue" type="radio" name="day" value="2">
+
+
+    <label for="wed">wed</label>
+    <input id="wed" type="radio" name="day" value="3">
+
+    <br><br>
+
+
+   <div>
+       <label for="consoles">Consoles you've used</label>
+
+       <select name="console" id="consoles">
+       <option value ="ps4">ps4</option>
+       <option value ="xbox">xbox</option>
+       </select>
+   </div>
+
+        <br>
+        <h1 class="fancy-header">Send an Email</h1>
+        <label for="email_address">Email address:</label><br>
+        <input type="text" id="email_address" name="email_address">
+
+        <br>
+        <label for="subject">Subject:</label><br>
+        <input type="subject" id="subject" name="subject">
+        <br>
+
+        <label for="note">Enter Text Below</label><br>
+        <textarea name="note" id="note" cols="18" rows="4"></textarea>
+        <br>
+
+</body>
+</html>
