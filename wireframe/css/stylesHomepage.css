@@ -1,0 +1,76 @@
+/* Reset */
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 1.1em;
+    line-height: 1.2em;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Layout */
+
+.container{
+    margin:20px;
+
+}
+
+header > h1 {
+    float: left;
+}
+
+header > nav {
+    float: right;
+    margin-top: 2px;
+}
+
+nav > ul {
+    list-style-type: none;
+
+}
+nav > ul > li{
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+.nav-item {
+    display: inline-block;
+}
+
+.hero {
+    clear: both;
+    text-align: center;}
+
+ .hero img {
+     height: 385px;
+     width: 100%
+ }
+
+#mainpara {
+    width: 700px;
+    float: left;
+}
+#subsect {
+    font-style: italic;
+    width: 400px;
+    float: right;
+}
+
+footer {
+    margin-top: 300px;
+}
+
+footer p {
+    float:left;
+}
+
+.footer-nav{
+    float:right;
+
+}

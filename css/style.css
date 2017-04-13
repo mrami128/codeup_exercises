@@ -1,0 +1,36 @@
+header {
+    background-color: gray;
+}
+
+li a{
+    color:red;
+}
+
+/* RGB has 255 colors  */
+
+.top-navigation a {
+    font-weight: bold;
+    color: purple;
+    text-decoration: none;
+}
+ul {
+
+}
+
+#current {
+    background-color: green;
+}
+
+.pill-nav{
+    border-style: solid;
+    boder-color: black;
+    border-width: 1px;
+}
+
+p > strong {
+    color: darkred;
+}
+
+a:hover{
+    font-size:30px;
+}

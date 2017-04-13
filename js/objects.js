@@ -13,7 +13,7 @@ var person = {
 
 //if adding after object creation  --->  person.middleName="justin";
     person.middleInitial= 'j';
-
+// so now the object person has three
     console.log(person);
 
     /**
