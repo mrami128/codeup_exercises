@@ -9,11 +9,16 @@
 var person = {
     firstName: 'Marc',
     lastName: 'Ramirez',
+    sayHello: function(){
+        console.log("Hello " + this.firstName + " " + this.lastName);
+    }
 }
 
 //if adding after object creation  --->  person.middleName="justin";
     person.middleInitial= 'j';
-// so now the object person has three
+
+// so now the object person has three properties
+
     console.log(person);
 
     /**
@@ -25,10 +30,11 @@ var person = {
      * Example:  person.sayHello() // returns "Hello from Rick Sanchez!"
      */
 // //review this bec i did not use return originally
-//     person.sayHello=function(){
-//        return"hello from " + this.firstName +" "+ this.lastName;
-//     };
-//     console.log( person.sayHello());
+//
+        person.sayHello=function(){
+        return"hello from " + this.firstName +" "+ this.lastName;
+        };
+       console.log( person.sayHello());
 //
 //
 //     /** TODO: Remember this problem from before?

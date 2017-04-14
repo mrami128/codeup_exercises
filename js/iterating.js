@@ -39,17 +39,18 @@
     })
 
         // another way to do above using others.forEach
-
-var shoppers[
-        {name: Ryan,
+//this is part
+var shoppers = [
+    {
+        name: Ryan,
         amount: 250,
-
+    },{
         name: Cameron,
-        amount:180,
-
-            name:George,
-            amount: 320,
-        }
+        amount: 180,
+    },{
+        name:George,
+        amount: 320,
+    }
     ]
 var discountRate = .35
 
