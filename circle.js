@@ -20,17 +20,15 @@
 
                   },
 
-        logInfo: function (doRounding) {
-                                     // TODO: create if/else method for doRounding.
-                    if(doRounding){
-                        var area = Math.round(this.getArea());
-                    }else {
-                        var area = this.getArea()
-                    }
+                logInfo: function (doRounding) {
 
-                        // If doRounding is true, round the result to the nearest integer.
-                        // Else output the complete value
-                   console.log("Area of a circle with radius: " + this.radius + ", is: " +area);
+                    var area = this.getArea();             //  create if/else method for doRounding.
+                    if(doRounding) {
+                        area = Math.round(area);
+                    }
+                                 // If doRounding is true, round the result to the nearest integer.
+                                // Else output the complete value
+                   console.log("Area of a circle with radius: " + this.radius + ", is: " + area);
                   }
     };
 
@@ -43,16 +41,16 @@
 
 
     console.log("=======================================================");
-    // TODO: Change the radius of the circle to 5.
+                        // Change the radius of the circle to 5.
     circle.setRadius(5);
-    // log info about the circle
+                        // log info about the circle
     console.log("Raw circle information");
     circle.logInfo(false);
     console.log("Circle information rounded to the nearest whole number");
     circle.logInfo(true);
 
     console.log('=======================================================');
-    function washCar(){}
+
 
 
 
