@@ -40,20 +40,21 @@
 //            }
 //        }, interval);
  //=========================== ex 3 --
-
         var count = 5;
-
         var interval = 300; // interval time in millisec
+        var intervalId;
 
-        var intervalId = setInterval(function () {
-            if (count ==0) {
+        var countDown = function(){
+            if (count == 0) {
                 clearInterval(intervalId);
                 console.log('Exterminate');
             } else {
                 count--;
                 console.log('-Click- Repeating this line ' + count);
             }
-        }, interval);
+        }
+
+        intervalId = setInterval(countDown, interval);
 
 
 
