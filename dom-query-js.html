@@ -6,73 +6,142 @@
 </head>
 <body>
 
-<h1 id="main-header">Hello World!</h1>
-<ul>
-    <li data-dbid="1a">Item 1</li>
-    <li data-dbid="2">Item 2</li>
-    <li data-dbid="3">Item 3</li>
-    <li data-dbid="4">Item 4</li>
-    <li data-dbid="5">Item 5</li>
-</ul>
-<h2 id="sub-header">Hello Again.</h2>
-<p class="sub-paragraph">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-</p>
+
+    <h1 id="main-header">Hello World!</h1>
+    <div>
+        <h3 id="login1">Login1</h3>
+        <h3 id="login2">Login2</h3>
+        <h3 class="login3">Login3</h3>
+    </div>
+    <ul>
+        <li data-dbid="1">Item 1</li>
+        <li data-dbid="2">Item 2</li>
+        <li data-dbid="3">Item 3</li>
+        <li data-dbid="4">Item 4</li>
+        <li data-dbid="5">Item 5</li>
+    </ul>
+    <h2 id="sub-header">Hello Again.</h2>
+
+    <p class="sub-paragraph">
+        111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    </p>
+    <p class="sub-paragraph">
+        222Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    </p>
+
+    <!--first create buttons in the html section--then do listener-then make func-->
+
+    <button id="mainHeaderBtn">change Main Header</button>
+    <button id="subHeaderBtn">change Sub Header</button>
 
 <script>
+
     (function() {
       "use strict";
 
-     // TODO: find and consolelog the main header element by id
+     // find and console log the main-header element by id
+//PIECE 1
+             var mainHeader = document.getElementById('main-header');
+ //            console.log(mainHeader);
 
-//             var mainHeader = document.getElementById('main-header');
-//             console.log(mainHeader);
-
-     // TODO: get, then show, then change inner html of mainHeader to "JavaScript is Cool"
+     // using var created above use .innerHTML = to write 'something new' then console log it "JavaScript is Cool"
 
 //            mainHeader.innerHTML = "JavaScript is cool.";
 //            console.log(mainHeader.innerHTML);
 
-     // TODO: Uncomment the next line and get the sub header element by id
+    //=============== Add click event to the h3 Login1 element ==========
 
-//       var subHeader = document.getElementById('sub-header');
-//       console.log(subHeader);
+    // 1st create login 1 btn in html --
+        // 2nd create function for when login is clicked-- clickable link
 
-        // TODO: Set the text color of subHeader to blue
+            var listener = function (event) {
+            //alert('You just clicked the Login1 !');
+            login1.style.color='red';  // after click change link to red
+            };
+    // 3rd register the event listener to the element-or-button-ElemByID to handle clicking onto LOGIN
 
- //       subHeader.style.color= 'blue';
- //       console.log(subHeader.innerHTML);
+            document.getElementById('login1').addEventListener('click', listener, false);
 
-        // TODO: Uncomment the next line and get all list items
+   //=============== Add click event to the h3 Login2 element ==========
 
-  //       var listItems = document.getElementsByTagName('li');
-  //                 console.log(listItems);
+        // 1st create function for when login is clicked-- clickable link
 
+        var listener = function (event) {
+            alert('You just clicked the Login2!');
+            login2.style.color='blue';  // after click change link to blue
+        };
+        // 2nd register the event listener to ElemByID to handle clicking onto LOGIN
 
+        document.getElementById('login2').addEventListener('click', listener, false);
+  //======================================================================
 
-        // TODO: Set text color on every other list item to grey
+    // USE DOM actions  and get the sub header element by id then change color to blue
 
-//       for(var i=0; i<listItems.length; i+= 2){
-//           listItems[i].style.color = 'red';
-//       }
-//
-//        // TODO: Set text color of li with dbid = 1 to blue
-//        for(var i=0;i<listItems.length; i++){
-//            if (listItems[i].getAttribute("data-dbid")==="1"){
-//                listItems[i].style.color='blue';}
-//        }
-//
-//           // listItems[0].style.color ='blue';
+          var subHeader = document.getElementById('sub-header');
+          console.log(subHeader);  // log to see that you've selected correct item
 
-        // TODO: Uncomment the next line and get all elements with class name sub-paragraph
+          subHeader.style.color= 'blue';
+
+    // ====== Add click event to sub-header ====
+    // first create ListenHandler function for sub-header link
+
+            var listener = function (event) {
+            alert('You just clicked the sub-header!');
+            };
+    // now register the listener to target /handle the clicking of main-header
+
+        document.getElementById('sub-header').addEventListener('click', listener, false);
+
+    // USE DOM action to get by tag name all ('li') list items
+
+         var listItems = document.getElementsByTagName('li');
+                   console.log(listItems);
+
+    // USE for loop to cycle through array of listItemes set every other list item to RED
+
+           for(var i=0; i < listItems.length; i+= 2){
+           listItems[i].style.color = 'red';
+           }
+
+    // Set text color of li with dbid === '1' to blue
+
+           for( var i=0; i < listItems.length; i++){
+               if (listItems[i].getAttribute("data-dbid")==="1"){
+               listItems[i].style.color='blue';}
+           }
+
+           // ONCE WE know array #0 we can-->  listItems[0].style.color ='orange';
+
+        //  get all elements with class name sub-paragraph
 
             var subParagraphs = document.getElementsByClassName('sub-paragraph') ;
             console.log(subParagraphs);
 
-        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        //  Change the text in the first sub paragraph to "Mission Accomplished!"
 
             subParagraphs[0].innertext="mission Accomplished !";
+
+    //after creating the html then make listener-then add func
+    // create DOm reference variables tied to the html buttons====
+
+        var mainHeaderBtn = document.getElementById('mainHeaderBtn')
+
+    // add REGister event listeners
+
+        mainHeaderBtn.addEventListener("click",changeHeader);
+
+    // add functions triggered by the event=======
+
+        function changeHeader() {
+            mainHeader.innerHTML =("JavaSScript is cool");
+        }
+
+        function changeSub(){
+            subHeader.style.color="blue";
+        }
+
 
     })();
 </script>

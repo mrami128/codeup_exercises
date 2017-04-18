@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsCalculator-2</title>
+</head>
+
+<body>
+
+     <!--<script src="js/jsCalculator.js";></script>-->
+
+
+    <div>
+        <p><input id="num-one"></p>
+        <p><input id="num-two"></p>
+
+
+        <p id="add-sum"></p>
+        <p id="sub-dif"></p>
+    </div>
+
+
+    <div>
+         <button id ="nin"> 9 </button>
+         <button id ="eig"> 8 </button>
+         <button id ="sev"> 7 </button>
+    </div>
+
+     <div>
+         <button id ="six"> 6 </button>
+         <button id ="fiv"> 5 </button>
+         <button id ="fou"> 4 </button>
+     </div>
+
+     <div>
+         <button id ="thr"> 3 </button>
+         <button id ="two"> 2 </button>
+         <button id ="one"> 1 </button>
+     </div>
+
+     <div>
+         <button id ="div"> / </button>
+         <button id ="mul"> * </button>
+         <button id ="sub"> - </button>
+         <button id ="add"> + </button>
+     </div>
+
+     <!-- xdecbes4min-->
+
+     <script>
+    "use strict";
+
+     var numOne = document.getElementById("num-one");
+
+     var numTwo = document.getElementById("num-two");
+
+     //=============================================
+
+     var addS = document.getElementById("add-sum");
+
+     var subS = document.getElementById("sub-dif");
+
+     //=====================================
+
+     numOne.addEventListener("input",addF);
+     numTwo.addEventListener("input",addF);
+
+     //=====================================
+
+     function addF(){
+         var one =parseFloat(numOne.value) || 0;
+         var two =parseFloat(numTwo.value) || 0;
+         addS.innerHTML = "Addition Result:  " + (one + two);
+     }
+
+     function subF(){
+         var one =parseFloat(numOne.value) || 0;
+         var two =parseFloat(numTwo.value) || 0;
+         subS.innerHTML = "Subtraction Result:  " + (one - two);
+     }
+
+     function mulF(){
+         var one =parseFloat(numOne.value) || 0;
+         var two =parseFloat(numTwo.value) || 0;
+         mulS.innerHTML = "Multiplication Result:  " + (one * two);
+     }
+
+     function divF(){
+         var one =parseFloat(numOne.value) || 0;
+         var two =parseFloat(numTwo.value) || 0;
+         divS.innerHTML = "Division Result:  " + (one / two);
+     }
+
+     </script>
+</body>
+</html>
