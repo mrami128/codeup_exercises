@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html{
+            background-color: lightgrey;
+        }
+        #map-canvas {
+            height: 800px;
+            width: 800px;
+                    }
+
+    </style>
+</head>
+<body>
+
+<h1> Google Map Exercise </h1>
+
+        <label for="lat">Lat:</label>
+        <input type="text" id="lat" value=" 29.426791">
+
+        <label for="long">Long:</label>
+        <input type="text" id="long" value="-98.489602">
+
+
+        <label for="zoom">zoom:</label>
+        <input type="hidden" id="zoom" value="10">
+
+        <button id="zoomIn"> + </button>
+        <button id="zoomOut"> - </button>
+
+        <button id="update">update map</button><br>
+
+
+        <div id="map-canvas"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3n8l3CR3fdf0YTDgXZsJIT1CcMkB_6N0 "></script>
+
+<script>
+
+ (function () {
+ "use strict";
+        //to Test if map is working here - do a console.log--> console.log("test");
+
+      var zoomVal = 18;
+
+     // var for the pinpoint marker:
+      var codeup = { lat: 29.426791, lng: -98.489602 };
+
+     // var for the infowindow - exer3
+      var infowindow = new google.maps.InfoWindow({
+         content: "Changing the world, one programmer at a time."
+      });
+
+
+     // Then Setup our map options object -settings:
+        var mapOptions = {
+
+            // Set the zoom level using var from above into-> zoom: zoomVal
+            zoom: zoomVal,
+
+            // This Centers the map at our location
+            center: {
+                lat: parseFloat(document.getElementById('lat').value),     // 29.426791
+                lng: parseFloat(document.getElementById('long').value)     //-98.489602
+            }
+            //When setting map during initial->  mapTypeId: google.maps.MapTypeId.TERRAIN
+        };
+
+     //NOW Render the map:
+       var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+// ====== END of BASIC MAP Creation: ======================
+
+     //NOW set pinpoint marker -exer2:
+       var marker = new google.maps.Marker({
+         position: codeup,
+         map: map
+       });
+
+     //NOW activate infowindow - exer3:
+       infowindow.open(map, marker);
+
+//====== Location Update  based on input boxes =====================
+
+        var update = document.getElementById('update');
+        update.addEventListener('click', function () {
+
+            var mapOptions = {
+                // Set the zoom level using var as above-> zoom: zoomVal
+                zoom: zoomVal,
+                // This sets the center of the map at our location
+                center: {
+                    lat: parseFloat(document.getElementById('lat').value),     // 29.426791
+                    lng: parseFloat(document.getElementById('long').value)     //-98.489602
+                }
+            };
+            map.setCenter(mapOptions.center);
+        });
+
+//======== Zoom Update based on zoom buttons==========================
+
+        var zoomIn = document.getElementById('zoomIn');
+        zoomIn.addEventListener('click', function () {
+            zoomVal++;
+            console.log(zoomVal)
+            map.setZoom(zoomVal);
+        })
+        var zoomOut = document.getElementById('zoomOut');
+        zoomOut.addEventListener('click', function () {
+            zoomVal--;
+            console.log(zoomVal)
+            map.setZoom(zoomVal);
+        })
+
+
+    })();  // This is part of IFFE function
+
+</script>
+
+</body>

@@ -33,7 +33,7 @@
     // Set our map options
         var mapOptions = {
                                 // Set the zoom level using var as above-> zoom: zoomVal
-            zoom: 19,
+            zoom: 18,
 
     // This sets the center of the map at our location
             center: {
@@ -49,27 +49,14 @@
 
         //GEOCode Example
 // Include code from previous example
-// Set our address to geocode
 
-//
-            var listener = function (event) {
-            alert('You clicked the button!');
-            }
-          // add event listener to btn1
-//                var btn1 = document.getElementById('btn1');
-//                btn1.addEventListener('click', listener, false);
+      // Set our address to geocode
+        var address = "2450 trinity lane";
 
-          //differ version of same event listener
-                document.getElementById('btn1').addEventListener('click', listener, false);
-
- //end event handler
-
-        var address = "6418 chimney nest";
-
-// Init geocoder object
+      // Init geocoder object
         var geocoder = new google.maps.Geocoder();
 
-// Geocode our address from var above
+      // THEN Geocode our address from var above
 
         geocoder.geocode({ "address": address }, function(results, status) {
 //        console.log(results[0].geometry.location.lat());
@@ -90,5 +77,20 @@
     })();
 
 </script>
+
+//
+<!--var listener = function (event) {-->
+<!--alert('You clicked the button!');-->
+<!--}-->
+<!--// add event listener to btn1-->
+<!--//                var btn1 = document.getElementById('btn1');-->
+<!--//                btn1.addEventListener('click', listener, false);-->
+
+<!--//differ version of same event listener-->
+<!--document.getElementById('btn1').addEventListener('click', listener, false);-->
+
+//end event handler
+
+
 
 </body>
