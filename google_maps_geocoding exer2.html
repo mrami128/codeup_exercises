@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        #map-canvas {
+            height: 800px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1> Google Map Exercise </h1>
+
+<label for="lat">Lat:</label>
+<input type="text" id="lat" value=" 29.426791">
+
+<label for="long">Long:</label>
+<input type="text" id="long" value="-98.489602">
+
+
+<label for="zoom">zoom:</label>
+<input type="hidden" id="zoom" value="10">
+
+<button id="zoomIn"> +</button>
+<button id="zoomOut"> -</button>
+
+<button id="update">update map</button>
+<!--<input  id="btn1" placeholder="GgetYour Address"> <br><br>-->
+
+<div id="map-canvas"></div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3n8l3CR3fdf0YTDgXZsJIT1CcMkB_6N0 "></script>
+
+<script>
+
+ (function () {
+ "use strict";
+                                  //to Test if map is working--do a console.log--> console.log("test");
+        var zoomVal = 10;
+                                 // Set our map options
+        var mapOptions = {
+                                   // Set the zoom level using var as above-> zoom: zoomVal
+            zoom: zoomVal,
+
+            // This sets the center of the map at our location
+            center: {
+                lat: parseFloat(document.getElementById('lat').value),     // 29.426791
+                lng: parseFloat(document.getElementById('long').value)     //-98.489602
+            }
+        };
+
+        //Render the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+
+// ====== END of BASIC MAP Creation: ======================
+
+
+//====== Location Update  based on input boxes =====================
+
+        var update = document.getElementById('update');
+        update.addEventListener('click', function () {
+
+            var mapOptions = {
+                // Set the zoom level using var as above-> zoom: zoomVal
+                zoom: zoomVal,
+
+                // This sets the center of the map at our location
+                center: {
+                    lat: parseFloat(document.getElementById('lat').value),     // 29.426791
+                    lng: parseFloat(document.getElementById('long').value)     //-98.489602
+                }
+            };
+            map.setCenter(mapOptions.center);
+        });
+
+//======== Zoom Update=================================
+        var zoomIn = document.getElementById('zoomIn');
+        zoomIn.addEventListener('click', function () {
+            zoomVal++;
+            console.log(zoomVal)
+            map.setZoom(zoomVal);
+        })
+        var zoomOut = document.getElementById('zoomOut');
+        zoomOut.addEventListener('click', function () {
+            zoomVal--;
+            console.log(zoomVal)
+            map.setZoom(zoomVal);
+        })
+//
+//==================================
+//
+//        //differ version of same event listener
+//        document.getElementById('btn1').addEventListener('click', listener, false);
+//        //end event handler
+
+        //      var address = "6418 chimney nest";
+
+
+//// Init geocoder object
+//        var geocoder = new google.maps.Geocoder();
+//
+//// Geocode our address from var above
+//
+//        geocoder.geocode({"address": address}, function (results, status) {
+////        console.log(results[0].geometry.location.lat());
+////        console.log(results[0].geometry.location.lng());
+//
+//            // Check for a successful result
+//            if (status == google.maps.GeocoderStatus.OK) {
+//
+//                // Recenter the map over the address
+//                map.setCenter(results[0].geometry.location);
+//            } else {
+//
+//                // Show an error message with the status if our request fails
+//                alert("Geocoding was not successful - STATUS: " + status);
+//            }
+//        });
+
+    })();
+
+</script>
+
+</body>
