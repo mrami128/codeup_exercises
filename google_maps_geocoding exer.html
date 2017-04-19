@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        #map-canvas {
+            height: 800px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+<h1>    Google Maps   </h1>
+<input id="btn1" placeholder="Find Your Address"> <br><br>
+
+<div id="map-canvas"> </div>
+
+<script src ="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3n8l3CR3fdf0YTDgXZsJIT1CcMkB_6N0 "></script>
+
+<script>
+
+    (function() {
+        "use strict";
+    //to Test if map is working--do a console.log
+    //      console.log("test");
+
+
+                                    // var zoomVal=19;
+    // Set our map options
+        var mapOptions = {
+                                // Set the zoom level using var as above-> zoom: zoomVal
+            zoom: 19,
+
+    // This sets the center of the map at our location
+            center: {
+                lat:  29.426791,
+                lng: -98.489602
+            }
+        };
+    // Render the map
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    // ===== END of BASIC MAP Creation: ===============
+
+        //GEOCode Example
+// Include code from previous example
+// Set our address to geocode
+
+//
+            var listener = function (event) {
+            alert('You clicked the button!');
+            }
+          // add event listener to btn1
+//                var btn1 = document.getElementById('btn1');
+//                btn1.addEventListener('click', listener, false);
+
+          //differ version of same event listener
+                document.getElementById('btn1').addEventListener('click', listener, false);
+
+ //end event handler
+
+        var address = "6418 chimney nest";
+
+// Init geocoder object
+        var geocoder = new google.maps.Geocoder();
+
+// Geocode our address from var above
+
+        geocoder.geocode({ "address": address }, function(results, status) {
+//        console.log(results[0].geometry.location.lat());
+//        console.log(results[0].geometry.location.lng());
+
+                 // Check for a successful result
+            if (status == google.maps.GeocoderStatus.OK) {
+
+                // Recenter the map over the address
+                map.setCenter(results[0].geometry.location);
+            } else {
+
+                // Show an error message with the status if our request fails
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
+        });
+
+    })();
+
+</script>
+
+</body>

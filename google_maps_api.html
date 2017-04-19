@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #map-canvas {
+            height: 800px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>    Google Maps   </h1>
+
+    <div id="map-canvas"> </div>
+
+    <script src ="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxIPbNd4ljI6NdSyP5ugk4XoKDzw2VEZM "></script>
+
+<script>
+
+    (function() {
+        "use strict";
+        console.log("test");
+
+    // Set our map options
+        var mapOptions = {
+            // Set the zoom level
+            zoom: 18,
+
+            // This sets the center of the map at our location
+            center: {
+                lat:  29.426791,
+                lng: -98.489602
+            }
+        };
+
+    // Render the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    //GEOCode Example
+        // create address  in var
+//        var address ="Marc House";
+
+//        function geo
+
+
+    })();
+
+</script>
+
+</body>
+</html>
