@@ -3,45 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>calc-test2a----version 2 is on meDAN repos</title>
-    <link rel="stylesheet" href="calc-test2a.css">
+    <link rel="stylesheet" href="css/calc-test2a.css">
 </head>
 
-<body>
-<div class="calcDisplay">
-    <input type="text" id="display" >
-    <input type="text" id="display2" >
-    <input type="text" id="display3" >
-</div>
 
-<div class="calcRowLeft"><br>
+<body>
+
+<div class="calcDisplay">
+    <input type="text" id="display" readonly>
+    <input type="text" id="display2" readonly>
+    <input type="text" id="display3" readonly>
+</div>
+<br>
+<div class="btnRow1">
     <input type="button" class="number" value="9" >
     <input type="button" class="number" value="8" >
     <input type="button" class="number" value="7" >
-    <input type="button" class="number" value="6" >
-    <input type="button" class="number" value="5" >
-    <br>
-    <input type="button" class="number" value="4" >
-    <input type="button" class="number" value="3" >
-    <input type="button" class="number" value="2" >
-    <input type="button" class="number" value="1" >
-    <input type="button" class="number" value="0" >
-
+    <input type="button" class="opBtns" name="multiplyBtn" value="x" >
 </div>
 
-<div class="calcRowCtr"><br>
-    <input type="button" class="opBtns" name="addBtn" value="+" >
-    <input type="button" class="opBtns" name="subBtn" value="-" >
-    <input type="button" class="opBtns" name="multiplyBtn" value="x" >
+<div class="btnRow2">
+    <input type="button" class="number" value="6" >
+    <input type="button" class="number" value="5" >
+    <input type="button" class="number" value="4" >
     <input type="button" class="opBtns" name="divBtn" value="/" >
 </div>
 
-<div><br>
-    <input type="button" class="clear" id="clear" value="C" >
-    <input type="button" class="equalBtn" id="equal" value="=" >
-
-    <input type="text" id="display4">
+<div class="btnRow3">
+    <input type="button" class="number" value="3" >
+    <input type="button" class="number" value="2" >
+    <input type="button" class="number" value="1" >
+    <input type="button" class="opBtns" name="addBtn" value="+" >
 </div>
 
-<script src="calc-test2a.js"></script>
+<div class="btnRow4">
+    <input type="button" class="number" value="0" >
+    <input type="button" class="number" name="insertDecimal" value=" ." >
+
+    <!--<input type="button" class="number" value="." onclick="insertDecimal('.')" >-->
+
+    <input type="button" class="opBtns" name="subBtn" value="-" >
+    <input type="button" class="equalBtn" id="equal" value="=" >
+</div>
+
+<div class="btnRow5">
+        <input type="button" class="clear" id="clear" value="C" >
+        <input type="text" id="display4">
+</div>
+
+    <script src="js/calc-test2a.js"></script>
 
 </body>
