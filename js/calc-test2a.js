@@ -66,19 +66,19 @@ equal.addEventListener("click", function () {
 
     switch(operator){
         case "-":
-            result.value= display - display3;
-            console.log(result.value);
+            result.value= parseFloat(display - display3);
+            console.log();
             break;
         case "+":
-            result.value= display + display3;
+            result.value= (display + display3);
             console.log(result.value);
             break;
         case "/":
-            result.value = display / display3;
+            result.value = (display / display3);
             console.log(result.value);
             break;
         case "x":
-            result.value= display * display3;
+            result.value= (display * display3);
             console.log(result.value);
             break;
     }

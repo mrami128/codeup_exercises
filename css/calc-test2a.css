@@ -1,0 +1,29 @@
+html {
+    background-color: #374257;
+    /*color: #374257;*/
+}
+h1 {color: #33638b}
+
+body {
+    color: #33638b;
+    margin: 0;
+    padding-top: 100px ;
+    text-align: center;
+}
+
+.calcBody {
+    font-size: 36px;
+    margin: 0 auto;
+    width: 12em;
+    border-radius: 0%;
+    background-color: #3a6f80;
+    box-shadow: 4px 4px 8px #155e80;
+    border-right: 12px solid #413f3f;
+    border-top: 2px solid #413f3f;
+    border-left: 3px solid #000;
+    border-bottom: 10px solid #2c2a2a;
+    padding-bottom: 15px;
+
+}
+
+
