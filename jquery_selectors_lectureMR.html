@@ -7,11 +7,19 @@
 <body>
 
 
+
+<h1 id="codeup" >Hello Codeup </h1>
+
 <h1 id="first-hello" class="firstHelloCl" >first hello</h1>
 
-<p id="first-p" class="firstPCl"> I am a paragraph</p>
 
-<div id=first-div" class="firstDivCl">I like divs</div>
+    <p id="first-p" class="firstPCl"> I am a paragraph</p>
+
+
+    <div id=first-div" class="firstDivCl">I like divs</div>
+
+    <div id="important" class="important"> be careful with that!</div>
+
 
 <ul id="names-id" class="namesCl">
     <li> fer </li>
@@ -19,29 +27,42 @@
     <li> luis </li>
 </ul>
 
-<h1 id="second-hello" class="secHelloCl">
-    second hello
-</h1>
+    <h1 id="second-hello" class="secHelloCl"> second hello  </h1>
 
-<h1 id="third-hello" class="thirdHelloCl">
-    third hello
-</h1>
+    <h1 id="box" class="thirdHelloCl"> third hello </h1>
 
-<!--//thie jquery CDN link is from website:  code.jquery.com minified-->
 
-    <script
-        src="https://code.jquery.com/jquery-2.2.4.js"
+
+<!--//this jquery CDN link is from website:  code.jquery.com minified-->
+<!--dont use cdn and local--choose one or other-->
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
         integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 
     <script>
       $(document).ready(function(){
             console.log("Dont use the iffe function jquery just use this function instead--this is for jquery");
+        //magic happens here
+
+//ex1
+          var contents = $('#codeup').html();
+          alert(contents);
+//ex2
+          console.log($('#box').html());
+//ex2a
+            alert($('#box').html());
+//ex3
+         // $('.important').css('background-color',yellow);
+
+//ex4
+
+
+
+        // write code down to here--not beyond this
         });
-
-
-
-   </script>
+    </script>
 
 </body>
 </html>
