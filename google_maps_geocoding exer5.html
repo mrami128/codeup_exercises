@@ -44,50 +44,56 @@
 
     (function () {
         "use strict";
-        //to Test if map is working--do a console.log--> console.log("test");
 
+        //to Test if basic map generation link is working--do a console.log--> console.log("test");
 
-        // var for the pinpoint marker- exer2
+            // var for the baseline pinpoint marker- exer2
         var codeup = { lat: 29.426791, lng: -98.489602 };
 
-        // var for the infowindow - exer3
+            // var for the baseline infowindow - exer3
         var infowindow = new google.maps.InfoWindow({
             content: "Changing the world, one programmer at a time."
-         });
+        });
+            //var for the newly selected location from below
         var infowindow2 = new google.maps.InfoWindow({
             content: "This is your selected address."
         });
+            //baseline zoom
         var zoomVal = 12;
 
-        // Set our map options
+        // Set our baseline map options
         var mapOptions = {
-            // Set the zoom level using var as above-> zoom: zoomVal
-            zoom: zoomVal,
 
-            // This sets the center of the map at our location
+            zoom: zoomVal,  // Set the zoom level using var as above-> zoom: zoomVal
+
+                           // Sets Center of map at base entry point location-will be overid later by click box
             center: {
                 lat: parseFloat(document.getElementById('lat').value),     // 29.426791
                 lng: parseFloat(document.getElementById('long').value)     //-98.489602
             }
         };
 
-        //Render the map
+        //Render the map - at initial baseline point
         var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-
 // ====== END of BASIC MAP Creation: ======================
-        //NOW set pinpoint marker -exer2:
+
+
+
+ //===================
+        // always set pinpoint marker - after basic map creation: exer2
         var marker = new google.maps.Marker({
             position: codeup,
             map: map
         });
 
-        //NOW activate infowindow - exer3:
+        //NOW activate infowindow for codeup pinpoint- exer3:
         infowindow.open(map, marker);
 
 
-//====== Location Update  based on long- lat boxes =====================
+//====== Location Update  based on preset/adjustable long- lat boxes =====================
 
+        //this listens for 'update button' click then reads
         var update = document.getElementById('update');
         update.addEventListener('click', function () {
 
@@ -121,22 +127,23 @@
         var myHomebtn = document.getElementById('homeButt');
         myHomebtn.addEventListener('click', function () {
 
-            //once homebutt gets clicked-func gets home text from box
+                //once homebutt gets clicked-func then reads home text from box
             var address = document.getElementById('homeText').value;   //"6418 chimney nest";
 
-            // then Initiates geocoder object
+               // then Initiates geocoder object
             var geocoder = new google.maps.Geocoder();
 
-            // Geocodes our address from var above
+               // Geocodes our address from var above
             geocoder.geocode({"address": address}, function (results, status) {
-                    //  if you want tosee lat info-> console.log(results[0].geometry.location.lat());
-                    //  if you want to see lon info-> console.log(results[0].geometry.location.lng());
 
-                // Geocode now Checks for a successful address check result
+                      //  if you want tosee lat info-> console.log(results[0].geometry.location.lat());
+                     //  if you want to see lon info-> console.log(results[0].geometry.location.lng());
+                    // Geocode now tests for a successful address check result
                 if (status == google.maps.GeocoderStatus.OK) {
 
-                    // Recenter the map over the address
+                        // Recenters the map over THIS latest address
                     map.setCenter(results[0].geometry.location);
+                        // sets new infobox marker
                     var marker = new google.maps.Marker({
                         position: results[0].geometry.location,
                         map: map
@@ -145,13 +152,13 @@
                     map.setZoom(18);
                 } else {
 
-                    // Show an error message with the status if our request fails
+                    // Show an error 'bec address test failed' message with fail status->request failed
                     alert("Geocoding was not successful - STATUS: " + status);
                 }
-            });
-        })      //myHomebtn funtion end brace
+            });   //Geocode func endbrace
+        })      //myHomebtn func end brace
 
-    })();    //iffe funct
+    })();   // iffe func end brace
 
 </script>
 
