@@ -8,7 +8,8 @@
 
 
 
-<h1 id="codeup" >Hello Codeup </h1>
+<h1 id="codeup" class="codeup">Hello Codeup </h1>
+<h1 id="test" class="codeup">Hello Codeup test on id </h1>
 
 <h1 id="first-hello" class="firstHelloCl" >first hello</h1>
 
@@ -27,11 +28,13 @@
     <li> luis </li>
 </ul>
 
-    <h1 id="second-hello" class="secHelloCl"> second hello  </h1>
+    <h2 id="second-hello" class="secHelloCl"> second hello  </h2>
 
-    <h1 id="box" class="thirdHelloCl"> third hello </h1>
+    <h3 id="box" class="thirdHelloCl"> third hello </h3>
 
+<h4 id="thefour" class="thefour"> clickable fourth  hello  </h4>
 
+<button id="btn">click me</button>
 
 <!--//this jquery CDN link is from website:  code.jquery.com minified-->
 <!--dont use cdn and local--choose one or other-->
@@ -46,18 +49,42 @@
             console.log("Dont use the iffe function jquery just use this function instead--this is for jquery");
         //magic happens here
 
-//ex1
-          var contents = $('#codeup').html();
-          alert(contents);
-//ex2
-          console.log($('#box').html());
-//ex2a
-            alert($('#box').html());
+////ex1
+//          var contents = $('#codeup').html();
+//          alert(contents);
+////ex2
+//          console.log($('#box').html());
+////ex2a
+//            alert($('#box').html());
+//
 //ex3
-         // $('.important').css('background-color',yellow);
+//          $('.important').css('background-color','yellow');
+////ex3a
+//        $('.important').delay(1000).slideUp(1000).delay(1000).slideDown(1000);
 
-//ex4
-
+////ex4
+//    $('.codeup').css('border', '1px dotted red');
+//
+////ex5  fyi  try not to do all stylinh in jquery---have html file..css file..js file
+//
+////ex6  set another class up and try to get red dotted line--class codeup--id is test--it got red box
+//
+////ex7
+//       $('li').css('font-size','30px');
+//       $('h1,p,li').css('color','blue');
+//
+////ex8
+//       alert($('h3').text());
+//
+////ex9
+//     $('#btn').click(function(){
+//         console.log('clickd button')
+//         //$(
+//        });
+////ex10
+          $('#thefour').click(function(){
+          window.location = "http://www.google.com";
+          });
 
 
         // write code down to here--not beyond this
