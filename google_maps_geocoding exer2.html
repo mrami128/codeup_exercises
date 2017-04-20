@@ -57,7 +57,7 @@
         var infowindow2 = new google.maps.InfoWindow({
             content: "This is your selected address."
         });
-        var zoomVal = 10;
+        var zoomVal = 12;
 
         // Set our map options
         var mapOptions = {
@@ -86,7 +86,7 @@
         infowindow.open(map, marker);
 
 
-//====== Location Update  based on input boxes =====================
+//====== Location Update  based on long- lat boxes =====================
 
         var update = document.getElementById('update');
         update.addEventListener('click', function () {
