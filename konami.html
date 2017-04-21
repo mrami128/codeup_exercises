@@ -6,6 +6,8 @@
 <body>
 <h1>Konami Code</h1>
 
+
+<!--this is CDN link-->
 <script src="https://code.jquery.com/jquery-2.2.4.js"
         integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
         crossorigin="anonymous">
@@ -15,8 +17,8 @@
     $(document).ready(function() {
         "use strict";
 
-        $(document).keyup(function (e) {
-            console.log(e.keyCode);
+        $(document).keyup(function (event) {
+            console.log(event.keyCode);
         });
 
     });
