@@ -4,26 +4,86 @@
     <title>Konami Code</title>
 </head>
 <body>
-<h1>Konami Code</h1>
+<h1>* The Fernando Effect /  Konami Code *</h1>
 
 
-<!--this is CDN link-->
+<p> Enter secret code anywhere on screen !!<br>
+<!--<form>-->
+    <!--<input type="text" id="textfield" name="textfield" placeholder="click here + enter code"/>-->
+<!--</form>-->
+
+
+<h2 id="yes"><br> You are Correct - But be Careful with that !!! </h2>
+
+<h2 id="no"> All Files Erased! - yes ... Be careful with that!</h2>
+
+
+<!--===================================================-->
+<!--this is Jquery CDN link-->
 <script src="https://code.jquery.com/jquery-2.2.4.js"
         integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
         crossorigin="anonymous">
 </script>
 
 <script>
-    $(document).ready(function() {
-        "use strict";
+    $(document).ready(function () {
+// "use strict";
 
-        $(document).keyup(function (event) {
-            console.log(event.keyCode);
+        // activate screen key monitor ==========
+
+        $(document).keydown(function (event) {
+
+            if (event.keyCode == 65) {
+                $("#yes").show();
+                exitFunc1();
+                console.log('back from exit func1')
+
+            } else {
+                $("#no").show();
+                console.log('in the else piece');
+                exitFunc2();
+                console.log('back from ex func2')
+            }
         });
+
+        var exitFunc1 = function () {
+            console.log('I am now in the exitFunc 1 and turning off keydown');
+            $(document).off('keydown');
+            //window.location.replace('http://www.google.com');
+         };
+
+        var exitFunc2 = function () {
+             console.log('I am now in the exitFunc 2 and turning off keydown');
+             $(document).off('keydown');
+             //window.location.replace('http://www.bing.com');
+
+         };
+
+// ======= hide 1 and 2 ========================
+
+        $("#yes").hide();
+        $("#no").hide();
+//
+////=========End of basic version======
+//
+//     var keys = [], konami ='65,66,67';
+//
+//     $(document).keydown(function cheatCode(event) {
+//         keys.push (event.keyCode);
+//
+//          if (keys.toString().indexOf(konami) >=0){
+//                $(document).unbind('keydown', cheatCode);
+//                $(document).keydown(afterkonami);
+//            }
+//            })
+//            var afterkonami=function() {
+//                alert('You Live!');
+//                console.log('live');
+//            };
+//
 
     });
 </script>
-
 
 
 </body>
