@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cube Proj</title>
+    <style>
+
+        #mainDiv{
+            width: 400px;
+            height: 400px;
+            margin: 200px auto;/*auto sets center left right*/
+            perspective: 1000px;/*this will affect the child of main -low nbr increas rotate twd mediv*/
+            /*border: 5px solid black;*/
+        }
+        #boxDiv{
+            width: 400px;
+            transform-style: preserve-3d; /*ties to @keyfr below -by def the 6chil divs(sides go flat during rotation-preserv 3d keeps their position during rotat*/
+            animation: rotate 15s linear infinite;/*anim property binds anim to html elmnt--rotate is name i picked from below*/
+        }/* linear=same speed begin to end of rotation*/
+
+        #boxDiv div{/*sides*/
+            position: absolute; /*this stacks main -side surface-each side atop each other-if not theyd be lined one below nextx6boxes*/
+            border: 1px solid black;/* undo absolute to see the stacked boxes*/
+            width: 400px;
+            height: 400px;
+            opacity: .72;
+        }
+        #front{
+            transform: translateZ(200px); /*this property creates mvmt on z axis-front panel toward us*/
+            background: black;/* using 200px-bec main side surface is 400x400--200 is halfway for rotation view angle*/
+        }
+        #back{
+            transform: rotateY(180deg) translateZ(200px);/*whenY rotates180 then the z transl moves #backdiv away from us200px*/
+            background: #155e80;
+        }
+        #left{
+            transform: rotateY(-90deg) translateX(-200px);/*the origin starts the transform from left of center-iot to fit/align we start from left or right NOT center */
+            transform-origin: left;
+            background: black;
+        }
+        #right{
+            transform: rotateY(90deg) translateX(200px);/*the origin starts the transform from left of center-iot to fit we start from left or right NOT center */
+            transform-origin: right;
+            background:  #155e80;/*darkgray to add perspective*/
+        }
+        #top{
+            transform:rotateX(-90deg) translateY(-200px);/*top moves twd top side-Yaxis incrs from top to bottom*/
+            transform-origin: top;
+            background: black;
+        }
+        #bottom{
+            transform:rotateX(90deg) translateY(200px);
+            transform-origin: bottom;
+            background:  #155e80;
+        }
+    @keyframes rotate{   /*this causes the animation-can use any name for rotate--starts at 0% rot along yaxis 100% is finish point/360deg*/
+        0%{transform:rotateY(0);} /* tie @keyfr to #boxdiv*/
+        100%{transform:rotateY(360deg);}
+    }
+
+
+    </style>
+</head>
+<body>
+    <div id="mainDiv">
+        <div id="boxDiv">
+            <h1>----------->RAM</h1>
+            <div id="front"></div>
+            <div id="back"></div>
+
+            <div id="left"><br></div>
+            <div id="right"></div>
+
+            <div id="top"></div>
+            <div id="bottom"></div>
+
+        </div>
+    </div>
+
+</body>
+</html>

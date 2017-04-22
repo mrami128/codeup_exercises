@@ -31,56 +31,58 @@
 
         // activate screen key monitor ==========
 
-        $(document).keydown(function (event) {
-
-            if (event.keyCode == 65) {
-                $("#yes").show();
-                exitFunc1();
-                console.log('back from exit func1')
-
-            } else {
-                $("#no").show();
-                console.log('in the else piece');
-                exitFunc2();
-                console.log('back from ex func2')
-            }
-        });
-
-        var exitFunc1 = function () {
-            console.log('I am now in the exitFunc 1 and turning off keydown');
-            $(document).off('keydown');
-            //window.location.replace('http://www.google.com');
-         };
-
-        var exitFunc2 = function () {
-             console.log('I am now in the exitFunc 2 and turning off keydown');
-             $(document).off('keydown');
-             //window.location.replace('http://www.bing.com');
-
-         };
-
-// ======= hide 1 and 2 ========================
+//        $(document).keydown(function (event) {
+//
+//            if (event.keyCode == 65) {
+//                $("#yes").show();
+//                exitFunc1();
+//                console.log('back from exit func1')
+//
+//            } else {
+//                $("#no").show();
+//                console.log('in the else piece');
+//                exitFunc2();
+//                console.log('back from ex func2')
+//            }
+//        });
+//
+//        var exitFunc1 = function () {
+//            console.log('I am now in the exitFunc 1 and turning off keydown');
+//            $(document).off('keydown');
+//            //window.location.replace('http://www.google.com');
+//         };
+//
+//        var exitFunc2 = function () {
+//             console.log('I am now in the exitFunc 2 and turning off keydown');
+//             $(document).off('keydown');
+//             //window.location.replace('http://www.bing.com');
+//
+//         };
+//
+//// ======= hide 1 and 2 ========================
 
         $("#yes").hide();
         $("#no").hide();
 //
 ////=========End of basic version======
 //
-//     var keys = [], konami ='65,66,67';
-//
-//     $(document).keydown(function cheatCode(event) {
-//         keys.push (event.keyCode);
-//
-//          if (keys.toString().indexOf(konami) >=0){
-//                $(document).unbind('keydown', cheatCode);
-//                $(document).keydown(afterkonami);
-//            }
-//            })
-//            var afterkonami=function() {
-//                alert('You Live!');
-//                console.log('live');
-//            };
-//
+     var keys = [], konami ='65,66,67';
+
+     $(document).keydown(function cheatCode(event) {
+         keys.push (event.keyCode);
+
+          if (keys.toString().indexOf(konami) >=0){
+                $(document).unbind('keydown', cheatCode);
+                $(document).keydown(afterkonami);
+            }
+            })
+            var afterkonami=function() {
+                alert('You Live!');
+                console.log('live');
+                window.location.replace('http://www.bing.com');
+            };
+        alert('You Dont Live!');
+
 
     });
 </script>
