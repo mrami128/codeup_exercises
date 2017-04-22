@@ -9,13 +9,13 @@
             width: 400px;
             height: 400px;
             margin: 200px auto;/*auto sets center left right*/
-            perspective: 1000px;/*this will affect the child of main -low nbr increas rotate twd mediv*/
+            perspective:1500px;/*this will affect the child of main -low nbr increas rotate twd mediv*/
             /*border: 5px solid black;*/
         }
         #boxDiv{
             width: 400px;
             transform-style: preserve-3d; /*ties to @keyfr below -by def the 6chil divs(sides go flat during rotation-preserv 3d keeps their position during rotat*/
-            animation: rotate 15s linear infinite;/*anim property binds anim to html elmnt--rotate is name i picked from below*/
+            animation: rotate 17s linear infinite;/*anim property binds anim to html elmnt--rotate is name i picked from below*/
         }/* linear=same speed begin to end of rotation*/
 
         #boxDiv div{/*sides*/
@@ -24,6 +24,9 @@
             width: 400px;
             height: 400px;
             opacity: .72;
+            color: white;
+            font: 70px impact;
+            text-align: center;
         }
         #front{
             transform: translateZ(200px); /*this property creates mvmt on z axis-front panel toward us*/
@@ -64,12 +67,12 @@
 <body>
     <div id="mainDiv">
         <div id="boxDiv">
-            <h1>----------->RAM</h1>
-            <div id="front"></div>
-            <div id="back"></div>
+            <h1><--Marcus J. Ramirez<br></h1>
+            <div id="front"><br>Ram-FR</div>
+            <div id="back">RAM-B</div>
 
-            <div id="left"><br></div>
-            <div id="right"></div>
+            <div id="left"><br><br>RAM-L</div>
+            <div id="right"><br><br>RAM-R</div>
 
             <div id="top"></div>
             <div id="bottom"></div>
