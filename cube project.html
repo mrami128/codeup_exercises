@@ -15,7 +15,7 @@
         #boxDiv{
             width: 400px;
             transform-style: preserve-3d; /*ties to @keyfr below -by def the 6chil divs(sides go flat during rotation-preserv 3d keeps their position during rotat*/
-            animation: rotate 17s linear infinite;/*anim property binds anim to html elmnt--rotate is name i picked from below*/
+            animation: rotate 12s linear infinite;/*anim property binds anim to html elmnt--rotate is name i picked from below*/
         }/* linear=same speed begin to end of rotation*/
 
         #boxDiv div{/*sides*/
@@ -23,7 +23,7 @@
             border: 1px solid black;/* undo absolute to see the stacked boxes*/
             width: 400px;
             height: 400px;
-            opacity: .72;
+            opacity: .98;
             color: white;
             font: 70px impact;
             text-align: center;
@@ -44,12 +44,12 @@
         #left{
             transform: rotateY(-90deg) translateX(-200px);/*the origin starts the transform from left of center-iot to fit/align we start from left or right NOT center */
             transform-origin: left;
-            background: black;
+            background: #8b0b1b;
         }
         #right{
             transform: rotateY(90deg) translateX(200px);/*the origin starts the transform from left of center-iot to fit we start from left or right NOT center */
             transform-origin: right;
-            background:  #155e80;/*darkgray to add perspective*/
+            background:  #083980 /* to add perspective*/
         }
         #top{
             transform:rotateX(-90deg) translateY(-200px);/*top moves twd top side-Yaxis incrs from top to bottom*/
@@ -59,7 +59,7 @@
         #bottom{
             transform:rotateX(90deg) translateY(200px);
             transform-origin: bottom;
-            background:  #155e80;
+            background: darkgray;
         }
     @keyframes rotate{   /*this causes the animation-can use any name for rotate--starts at 0% rot along yaxis 100% is finish point/360deg*/
         0%{transform:rotateY(0);} /* tie @keyfr to #boxdiv*/
@@ -72,12 +72,22 @@
 <body>
     <div id="mainDiv">
         <div id="boxDiv">
-            <h1 id="topTex">M.Ram<br></h1>
-            <div id="front"><br>Ram-FR</div>
-            <div id="back">RAM-B</div>
 
-            <div id="left"><br><br>RAM-L</div>
-            <div id="right"><br><br>RAM-R</div>
+            <h1 id="topTex"> Hi Sandy <br></h1>
+
+            <div id="front"><br>   Ram-FR   </div>
+            <div id="back">  RAM-B </div>
+
+            <div id="left" >
+                <img src="img/chevy-s10.jpeg" style="width:95%; height:95%; opacity:.6; margin-top: 10px ">
+            </div>
+            <div id="right" >RAM-R<br><br> </div>
+
+
+            <!--<div id="box-red" class="box">-->
+                <!--<img src="img/codeup-arrow.png">-->
+                <!--620-750nm </div>-->
+
 
             <div id="top"></div>
             <div id="bottom"></div>
@@ -86,4 +96,4 @@
     </div>
 
 </body>
-</html> <!--VCRGaMES-Testing-->
+</html> <!--VCRGaMEStesting-->
