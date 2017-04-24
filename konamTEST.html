@@ -21,12 +21,13 @@
 <script>
     "use strict";
 
-    var i = 0;
 
     $(document).ready(function () {
 
+    var i = 0;
 
-    var konamiChars = ['38', '38'];
+
+    var konamiChars = [38, 38];
 
         $(document).keydown(function (event) {
 
@@ -34,11 +35,13 @@
 
              i++
 
-             if (event.keyCode == [2]) {
+             if (i == konamiChars.length) {
                  console.log("Yes")
                 window.location.replace('http://www.bing.com');
               };
 
+           }else{
+               i = 0;
            }
 
         });
