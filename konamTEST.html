@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+<h1>*  The Fernando Effect /  Konami Code *</h1>
+
+
+<p> Enter secret code anywhere on screen !!<br>
+
+
+
+<!--===================================================-->
+<!--this is Jquery CDN link-->
+<script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous">
+</script>
+
+<script>
+    "use strict";
+
+    var i = 0;
+
+    $(document).ready(function () {
+
+
+    var konamiChars = ['38', '38'];
+
+        $(document).keydown(function (event) {
+
+           if (event.keyCode == konamiChars[i]) {
+
+             i++
+
+             if (event.keyCode == [2]) {
+                 console.log("Yes")
+                window.location.replace('http://www.bing.com');
+              };
+
+           }
+
+        });
+
+//        //this function is for yes answer
+//        var exitFunc1 = function () {
+//            console.log('I am now in the exitFunc 1 and turning off keydown');
+//            $(document).off('keydown');
+//
+//            var x;
+//            var wait = 3000;
+//
+//            var timeoutId = setTimeout(function() {
+//                   window.location.replace('http://www.bing.com');
+////                 var x = 23;
+//                 }, wait);
+//
+//    console.log(x);
+//
+//            window.location.replace('http://www.bing.com');
+//        };
+//
+//        var exitFunc2 = function () {
+//            console.log('I am now in the exitFunc 2 and turning off keydown');
+//            $(document).off('keydown');
+//            //window.location.replace('http://www.bing.com');
+//
+//        };
+//
+//        // ======= hide 1 and 2 ========================
+//
+//    });
+    //
+    ////=========End of basic version======
+    //
+    //     var keys = [], konami ='65,66,67';
+    //
+    //     $(document).keydown(function cheatCode(event) {
+    //         keys.push (event.keyCode);
+    //
+    //          if (keys.toString().indexOf(konami) >=0){
+    //                $(document).unbind('keydown', cheatCode);
+    //                $(document).keydown(afterkonami);
+    //            }
+    //            });
+    //            var afterkonami=function() {
+    //                alert('You Live!');
+    //                console.log('live');
+    //                window.location.replace('http://www.bing.com');
+    //            };
+    //        alert('You Dont Live!');
+    //
+    //
+        });
+
+</script>
+
+
+</body>
+</html>
+
+
+
