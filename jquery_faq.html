@@ -2,6 +2,14 @@
     <html>
     <head>
         <title>Jquery</title>
+
+  <style>
+      .invisible{
+          display: none;
+      }
+
+  </style>
+
     </head>
 
     <body>
@@ -22,31 +30,35 @@
         <dd class="invisible">www.austinadventures.com</dd>
 
     </dl>
-
+    <a href="#" id="toggle">Toggle Class</a>
 
 
     <!--===================================================-->
     <!--this is Jquery CDN link-->
+
     <script src="https://code.jquery.com/jquery-2.2.4.js"
             integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-            crossorigin="anonymous">
-    </script>
+            crossorigin="anonymous"> </script>
+
     <!--this is the iffe statement replacemnt for jquery-->
 
     <script>
-    "use strict";
-    $(document).ready(function () {
-
-        $('.invisible').css('color', 'red')
-        $('.invisible').css('display', 'none')
-
-        $('.invisible')
+        "use strict";
+        $(document).ready(function () {
+        console.log('finished-ready')
 
 
-//        $('#highlight-important').click(function(event) {
-//            event.preventDefault();
-//            $('.important').toggleClass('highlighted');
+                    $('#toggle').click(function(){
+                        $('dd').toggleClass("invisible");
 
+  //  to see status of hide /unhide button                       if().hasClass((invis){
+  //                      $(this).text("hide")
+                    });
+
+
+            //        $('#highlight-important').click(function(event) {
+            //            event.preventDefault();
+            //            $('.important').toggleClass('highlighted');
 
 
 
