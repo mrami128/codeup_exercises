@@ -14,32 +14,32 @@
 
     <body>
 
-    <h1>*  The FAQ of 10 state parks *</h1>
+    <!--<h1>*  The FAQ of 10 state parks *</h1>-->
 
-    <dl>
-        <dt>1. Land amount dedicated to natl parks ?</dt>
-        <dd class="invisible">51 million acres - approx size of Kansas.</dd>
-<br>
-        <dt>2. Which park is worlds first natl park ?</dt>
-        <dd class="invisible">Yellowstone - created in 1872 by President Ulysses S. Grant. Its caretakers – the cavalry.</dd>
-<br>
-        <dt>3. Largest park in US ?</dt>
-        <dd class="invisible">St. Elias National Park in Alaska has an area of over 8.3 million acres</dd>
-<br>
-        <dt>4. More park info ?</dt>
-        <dd class="invisible">www.austinadventures.com</dd>
-    </dl>
+    <!--<dl>-->
+        <!--<dt>1. Land amount dedicated to natl parks ?</dt>-->
+        <!--<dd class="invisible">51 million acres - approx size of Kansas.</dd>-->
+<!--<br>-->
+        <!--<dt>2. Which park is worlds first natl park ?</dt>-->
+        <!--<dd class="invisible">Yellowstone - created in 1872 by President Ulysses S. Grant. Its caretakers – the cavalry.</dd>-->
+<!--<br>-->
+        <!--<dt>3. Largest park in US ?</dt>-->
+        <!--<dd class="invisible">St. Elias National Park in Alaska has an area of over 8.3 million acres</dd>-->
+<!--<br>-->
+        <!--<dt>4. More park info ?</dt>-->
+        <!--<dd class="invisible">www.austinadventures.com</dd>-->
+    <!--</dl>-->
 
-        <a href="#" id="toggle">Toggle Class</a>
+        <!--   <button id="toggle">Toggle Class</button>  -->
 
 
-        <ul>
-            <li>Linux</li>
-            <li>Apache</li>
-            <li>MySQL</li>
-            <li>PHP</li>
-            <li>Javascript</li>
-        </ul>
+        <!--<ul>-->
+            <!--<li>Linux</li>-->
+            <!--<li>Apache</li>-->
+            <!--<li>MySQL</li>-->
+            <!--<li>PHP</li>-->
+            <!--<li>Javascript</li>-->
+        <!--</ul>-->
         <!--<ul>-->
             <!--<li>inux</li>-->
             <!--<li>pache</li>-->
@@ -50,15 +50,16 @@
 
     <h1>Parks List</h1>
     <h3>National Parks</h3>
-    <ul id="national-parks">
+    <ul class="obj" id="national-parks">
         <li>Arches</li>
         <li>Badlands</li>
         <li>Carlsbad Caverns</li>
         <li>Denali</li>
         <li>Everglades</li>
     </ul>
+
     <h3>State Parks of Texas</h3>
-    <ul id="state-parks-texas">
+    <ul class="obj" id="state-parks">
         <li>Abilene</li>
         <li>Big Bend</li>
         <li>Choke Canyon</li>
@@ -66,35 +67,37 @@
         <li>Enchanted Rock</li>
     </ul>
 
-    <button> button </button>
+    <ul class='obj' id="local-parks">
+        <li>tom</li>
+        <li>jim</li>
+        <li>Carl</li>
+        <li>Dena</li>
+        <li>Even</li>
+    </ul>
+
+    <button id="btn">Toggle Class</button>
     <!--===================================================-->
-    <!--this is Jquery CDN link-->
+    <!--this is Jquery CDN   ACTION link-->
 
     <script src="https://code.jquery.com/jquery-2.2.4.js"
             integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-            crossorigin="anonymous"> </script>
+            crossorigin="anonymous">
+    </script>
 
-    <!--this is the iffe statement replacemnt for jquery-->
+
     <script>
         "use strict";
         $(document).ready(function () {
-        console.log('finished-ready')
+        console.log('finished-ready');
 
-//Toggle the hidden vs show park faqs:
-            $('#toggle').click(function(){
-                $('dd').toggleClass("invisible");
+
+            $('#btn').click(function(){
+
+                $('ul').each(function() {
+
+                    $(this).children(':nth-child(4)') .css('background-color', 'blue');
+                });
             });
-//// use the .each --to cycle through ul - li's--then use .CSS to color odds YELLOW, index item:0,2,4
-//            $('li').each(function(index) {
-//                if (index % 2 !== 0) {
-//                    $(this).css('background-color', '#ffff00');  //aka ff0
-//                }
-//            });
-//            $('li').first().css('background-color', 'red'); //selecting first li
-//
-
-
-
 
         });
     </script>
