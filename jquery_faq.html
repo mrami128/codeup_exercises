@@ -4,6 +4,7 @@
         <title>Jquery</title>
 
   <style>
+
       .invisible{
           display: none;
       }
@@ -14,70 +15,53 @@
 
     <body>
 
-    <!--<h1>*  The FAQ of 10 state parks *</h1>-->
 
-    <!--<dl>-->
-        <!--<dt>1. Land amount dedicated to natl parks ?</dt>-->
-        <!--<dd class="invisible">51 million acres - approx size of Kansas.</dd>-->
-<!--<br>-->
-        <!--<dt>2. Which park is worlds first natl park ?</dt>-->
-        <!--<dd class="invisible">Yellowstone - created in 1872 by President Ulysses S. Grant. Its caretakers – the cavalry.</dd>-->
-<!--<br>-->
-        <!--<dt>3. Largest park in US ?</dt>-->
-        <!--<dd class="invisible">St. Elias National Park in Alaska has an area of over 8.3 million acres</dd>-->
-<!--<br>-->
-        <!--<dt>4. More park info ?</dt>-->
-        <!--<dd class="invisible">www.austinadventures.com</dd>-->
-    <!--</dl>-->
+<div id="divGo">
+    <h1 id="hClick">  Would you like to sign up for our newsletter? <span id="spClick"> X </span>
+    </h1>
+</div>
 
-        <!--   <button id="toggle">Toggle Class</button>  -->
+<!--<div id="clickme"> Click here </div>-->
+
+<img id="book" src="img/codeup-arrow.png" alt="" width="80" height="90">
 
 
-        <!--<ul>-->
-            <!--<li>Linux</li>-->
-            <!--<li>Apache</li>-->
-            <!--<li>MySQL</li>-->
-            <!--<li>PHP</li>-->
-            <!--<li>Javascript</li>-->
-        <!--</ul>-->
-        <!--<ul>-->
-            <!--<li>inux</li>-->
-            <!--<li>pache</li>-->
-            <!--<li>ySQL</li>-->
-            <!--<li>HP</li>-->
-            <!--<li>avascript</li>-->
-        <!--</ul>-->
+    <!--<h1>Parks List</h1>-->
+    <!--<h3>National Parks</h3>-->
+    <!--<ul class="obj" id="national-parks">-->
+        <!--<li>Arches</li>-->
+        <!--<li>Badlands</li>-->
+        <!--<li>Carlsbad Caverns</li>-->
+        <!--<li>Denali</li>-->
+        <!--<li>Everglades</li>-->
+    <!--</ul>-->
 
-    <h1>Parks List</h1>
-    <h3>National Parks</h3>
-    <ul class="obj" id="national-parks">
-        <li>Arches</li>
-        <li>Badlands</li>
-        <li>Carlsbad Caverns</li>
-        <li>Denali</li>
-        <li>Everglades</li>
-    </ul>
+    <!--<h3>State Parks of Texas</h3>-->
+    <!--<ul class="obj" id="state-parks">-->
+        <!--<li>Abilene</li>-->
+        <!--<li>Big Bend</li>-->
+        <!--<li>Choke Canyon</li>-->
+        <!--<li>Davis Mountains</li>-->
+        <!--<li>Enchanted Rock</li>-->
+    <!--</ul>-->
 
-    <h3>State Parks of Texas</h3>
-    <ul class="obj" id="state-parks">
-        <li>Abilene</li>
-        <li>Big Bend</li>
-        <li>Choke Canyon</li>
-        <li>Davis Mountains</li>
-        <li>Enchanted Rock</li>
-    </ul>
+    <!--<ul class='obj' id="local-parks">-->
+        <!--<li>tom</li>-->
+        <!--<li>jim</li>-->
+        <!--<li>Carl</li>-->
+        <!--<li>Dena</li>-->
+        <!--<li>Even</li>-->
+    <!--</ul>-->
 
-    <ul class='obj' id="local-parks">
-        <li>tom</li>
-        <li>jim</li>
-        <li>Carl</li>
-        <li>Dena</li>
-        <li>Even</li>
-    </ul>
+    <!--<button id="btn">Expose Visited spots</button>-->
 
-    <button id="btn">Expose Visited spots</button>
+    <!--<button id="highlightBtn">highlight Btn</button>-->
 
-    <button id="highlightBtn">highlight Btn</button>
+
+<!--modal-->
+<div>
+
+</div>
 
     <!--===================================================-->
     <!--this is Jquery CDN   ACTION link-->
@@ -93,25 +77,45 @@
         $(document).ready(function () {
         console.log('finished-ready');
 
+    //========exercise 1 click span and get div to hide
 
-            $('#btn').click(function(){
-
-                $('ul').each(function() {
-
-                    $(this).children(':nth-child(3)') .css('background-color', 'blue');
-                });
+        // span click make div go hide --my version--
+        $('#spClick').click(function(){
+            $('#divGo').slideToggle()
             });
 
-            var highlightBtn =$('#highlightBtn');
-                highlightBtn.click(function() {
-                $('ul').each(function(index,element) {
-                    $(element).children(':nth-child(2)') .css('background-color', 'yellow');
-                })
-            })
+        //correct version
+        // $("span").click (function(){
+            // $(this).parent().parent().hide();
+
+//==== Exerc 2 ============
+
+            //  $(h3).click(func(){
+            //  $(this).next().slideToggle()
+
+//======= exer 3======bring in book slow fade in aft 8000====
+// With the element initially hidden, we can show it slowly:
+
+            $('#book').hide();
+              //set interval after page loads then 8000 then fade in slow
+
+             var delay = 3000; // delay time in milliseconds
+             var timeoutId = setTimeout(function () {
+
+               $( "#book" ).fadeIn(8000)
+             }, delay);
+
+    // correct method fadein after 8000
+       // $(#book).hide().delay(8000).fadein();
+
+//============bonus === set up div in html for modal
+
+//setTimeout(function(){
+ //           $('#myModal").modal("show"); },2000);
 
 
 
-        }); // this is iffe
+        }); // this is end of iffe
     </script>
 
     </body>
