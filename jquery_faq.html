@@ -76,6 +76,9 @@
     </ul>
 
     <button id="btn">Expose Visited spots</button>
+
+    <button id="highlightBtn">highlight Btn</button>
+
     <!--===================================================-->
     <!--this is Jquery CDN   ACTION link-->
 
@@ -95,11 +98,20 @@
 
                 $('ul').each(function() {
 
-                    $(this).children(':nth-child(4)') .css('background-color', 'blue');
+                    $(this).children(':nth-child(3)') .css('background-color', 'blue');
                 });
             });
 
-        });
+            var highlightBtn =$('#highlightBtn');
+                highlightBtn.click(function() {
+                $('ul').each(function(index,element) {
+                    $(element).children(':nth-child(2)') .css('background-color', 'yellow');
+                })
+            })
+
+
+
+        }); // this is iffe
     </script>
 
     </body>
