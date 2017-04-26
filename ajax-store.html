@@ -2,14 +2,27 @@
 <html>
 <head>
     <title>Online Store</title>
-    <style>
-        /*#thead {*/
-            /*height: 400px;*/
-            /*width: 400px;*/
-            /**/
-        /*}*/
-    </style>
+
+    <!--add <viewport> and the Bootstrap CDN--also need bootlink at bottom of page-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+        <style>
+        body{
+            background: lightgray;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        h1 {
+            color: red;
+            border: 1px solid;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        </style>
 </head>
+
 <body>
 
     <h1>My Tool Store</h1>
@@ -28,13 +41,13 @@
 
     <button id="resButton">Update Button</button>
 
+<!--adding AJAX with jquery by CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+<!-- adding bootstrap CDN goes below the ajax/javascript CDN -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-</script>
-
-
+<!-- now add jquery and ajax commands-->
 <script>
 
 $(document).ready(function(){  //Iffe2
