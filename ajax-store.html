@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Online Store</title>
+    <title>ajax tool store</title>
 
     <!--add <viewport> and the Bootstrap CDN--also need bootlink at bottom of page-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-        <style>
-        body{
-            background: lightgray;
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-        h1 {
+    <style>
+
+        h2 {
             color: red;
-            border: 1px solid;
-            text-align: center;
-            padding-top: 10px;
-            padding-bottom: 10px;
         }
         </style>
 </head>
 
 <body>
+        <!--=======-->
 
-    <h1>My Tool Store</h1>
+   <div class="container">
 
-    <table id="products">
+        <h2>My Tool Store</h2>
+
+        <table class="table table-hover" id="products">
         <thead id="thead">
         <tr>
             <th>Title</th>
@@ -37,7 +32,9 @@
         </tr>
         </thead>
         <tbody id="insertProducts"></tbody>
-    </table>
+        </table>
+   </div>
+        <!--=======-->
 
     <button id="resButton">Update Button</button>
 
@@ -47,7 +44,7 @@
 <!-- adding bootstrap CDN goes below the ajax/javascript CDN -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<!-- now add jquery and ajax commands-->
+<!-- now add the jquery and ajax commands-->
 <script>
 
 $(document).ready(function(){  //Iffe2
