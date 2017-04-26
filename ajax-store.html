@@ -28,22 +28,21 @@
 
     <button id="resButton">Update Button</button>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<!-- add the jquery link -->
-<!--<script src="https://code.jquery.com/jquery-2.2.4.js"-->
-<!--integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="-->
-<!--crossorigin="anonymous">-->
-<!--</script>-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
 
 
 <script>
 
+$(document).ready(function(){  //Iffe2
+"use strict";
 
-    function doOver(){
+    doOver();
 
-     (function () {
-        "use strict";
+        function doOver(){
 
             var content = '';
 
@@ -61,19 +60,13 @@
                 $('#insertProducts').html(content);
             });
 
+        } //End of doOver
 
-    })(); //This is the Iffe
+   $('#resButton').click(doOver);
 
-    } //End of doOver
+})   //Iffe2
 
-    doOver();
-
-    $('#resButton').click(function(){
-        doOver();
-
-    });
 
 </script>
-
 </body>
 </html>
