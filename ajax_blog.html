@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> My Bolg</title>
+    <title> My Blog</title>
     <meta charset="utf-8">
+
                 <!-- add viewport and bootstrap CDN-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <style>
+        body {
+            background: lightgray;
+        }
+        #posts{
+            margin-left: 20px;
+        }
+
+        #blogTitle{
+            color:red;
+            margin-left:20px;
+        }
+    </style>
+
 </head>
 <body>
-<div id="posts">this is the post area</div>
 
-<h2>Fancy Blog</h2>
+<h1 id="blogTitle"> Marc's Fancy Blog</h1>
+<br>
 
-<table class="table table-hover" id="products">
-    <thead id="thead">
-    <tr>
-        <th>Title</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Categories</th>
-    </tr>
-    </thead>
-    <tbody id="insertProducts"></tbody>
-</table>
-</div>
-
-
-
+<div id="posts"> </div>
+<br>
+<button id="resButton">Update Button</button>
 <!-- ========================= -->
 
 <!--add AJAX and jquery CDN-->
@@ -37,6 +40,41 @@
 
 <!-- x------------------------x -->
 <script>
+
+    $(document).ready(function(){  //Iffe2
+        "use strict";
+
+        doOver();
+
+        function doOver(){
+
+            var content = '';
+
+            $.get("data/blog.json").done(function (data) {
+
+                console.log(data);
+
+                for (var i = 0; i < data.length; i++) {
+                    content += '<div>' + '<h2 class="hh2">' + (i + 1)+ ". " + data[i].title + '</h2>';
+                    content += '<p>' + data[i].date + '</p>';
+                    content += '<p>' + data[i].content + '</p>';
+                    content += '<p class="para">Categories: ' + data[i].categories + '</p>' + '</div>';
+
+                }
+                $('#posts').html(content);
+                $('.hh2').click(function(){
+                    $(this).parent().children().first().next().next().slideToggle();
+                })
+
+            });
+
+        } //End of doOver
+
+        $('#resButton').click(doOver);
+
+
+    })   //Iffe2
+
 
 
 
