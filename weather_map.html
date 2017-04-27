@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>weather_map</title>
+
+    <!-- add viewport and bootstrap CDN-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>
+        #resButton{
+            border: 1px solid black;
+            margin: 10px;
+            background: lightblue;
+        }
+        .box{
+            height: 140px;
+            margin-bottom: 20px;
+            border: 1px solid black;
+            /*margin-left: 20px;*/
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="resButton">
+        <h1>Weather Application</h1>
+
+            <div class="container" id="disp1">
+            </div>
+
+    </div>
+
+
+
+<!-- AJAX Link with jquery only need this 1 for data request-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- bootstrap link #2 CDN -this goes below the ajax/javascript CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--adding moment js externally so we can convert unix time-->
+    <script src="js/moment.js"></script>
+
+<script> //  BELOW this SCRIPT is jquery work
+
+$(document).ready(function(){
+"use strict";
+
+//=====  AJAX req to get weather data =======
+
+    doOver();
+
+     function doOver() {
+       $.get("http://api.openweathermap.org/data/2.5/forecast/daily/", {
+            APPID: "7f8e3aa0aad113510e0c1eaafd1c17b8",
+            q: "San Antonio, TX",
+            units: "imperial",
+            cnt:'3'
+       }).done(function (data) {
+
+          // convert moment js -dt from the api--into todays date
+            var content = '<h2>' + data.city.name + '</h2>';
+
+            console.log(data.list); //  data is coming across then cycle through the data
+
+            for (var i = 0; i < data.list.length; i++) {
+
+                var date = moment(data.list[i].dt * 1000).format('dddd')  //this is to convert miliseconds
+
+                content += '<div class="col-sm-4 box"><p>' + date + '</p>';   //data.list[i].dt
+                content += '<p>Temp Max: ' + data.list[i].temp.max + '</p>';
+                content += '<p>Temp Min: ' + data.list[i].temp.min + '</p>';
+                content += '<p>Humidity: ' + data.list[i].humidity + '</p>' + '</div>';
+
+            }
+            $('#disp1').html(content);
+
+        }).fail(function () {
+            console.log('request failed')
+        }); // end of fail function
+    }       //end of doOver
+
+    //Refresh button
+    $('#resButton').click(doOver);
+
+        //==================== BASIC Map Setup
+
+
+
+
+        // ====== END BASIC Map Setup ======================
+
+
+
+})   // iffe  Ending
+
+</script>
+</body>
+</html>
