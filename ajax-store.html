@@ -68,10 +68,14 @@ $(document).ready(function(){  //Iffe2
 
                 }
                 $('#insertProducts').html(content);
+            })
+            .fail(function(){
+               console.log('request failed!') ;
             });
 
         } //End of doOver
 
+//on load
    $('#resButton').click(doOver);
 
 })   //Iffe2
