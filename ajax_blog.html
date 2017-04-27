@@ -51,8 +51,7 @@
             var content = '';
 
             $.get("data/blog.json").done(function (data) {
-
-                console.log(data);
+                data.reverse(); //this just reverses the last entry to show first
 
                 for (var i = 0; i < data.length; i++) {
                     content += '<div>' + '<h2 class="hh2">' + (i + 1)+ ". " + data[i].title + '</h2>';
