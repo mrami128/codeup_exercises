@@ -11,12 +11,18 @@
     <style>
         body {
             background-color: lightgray;
+            padding-top: 15px;
         }
 
         #header {
             text-align: center;
             border: 1px solid black;
             background-color: lightblue;
+        }
+
+        #cityName {
+            color:red;
+            text-blink: fast;
         }
 
         .col-xs-4 {
@@ -37,7 +43,7 @@
 
 <body>
 <div class="container">
-    <div id="header"><h3>Weather Application</h3></div>
+    <div id="header"><h4>Weather Application</h4></div>
     <div id="weather" class="row"></div>
 </div>
 
@@ -93,24 +99,30 @@ $(document).ready(function () {    //iffe
             console.log(data.list[0].humidity);
             console.log(data.list[0].speed);
             console.log(data.list[0].pressure);
+//            console.log(data.list[0].weather);
 
-            var weather = '<h2>' + data.city.name + '</h2>';
+            var weather = '<h2 id="cityName">' + data.city.name + '</h2>';
 
             //  this FOR loop goes through the api data writes to html
             for (var i = 0; i < data.list.length; i++) {
 
                 //This converts time to name of weekday
                 var date = moment(data.list[i].dt * 1000).format('dddd')  //this converts miliseconds to today-ex:thurs
+
                 //This sets up icon
                 var iconCode = data.list[i].weather[0].icon;
+
                 var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
 
+
                 var location = '';
-                location += data.city.name;
+                location +=  'data.city.name' ;
                 weather += '<div class="col-xs-4 box"> <h2>' + date + '</h2>';
+
                 weather += "<span class='icon'> </span> <br> ";
+
                 weather += "<strong>" + data.list[i].weather[0].main + ": </strong>" + data.list[i].weather[0].description + "<br><br>";
-                weather += '<p>' + '<h4>' + data.list[i].temp.min + '  \\  ' + data.list[i].temp.max + '</h4>' + '</p>';
+                weather += '<p>' + '<h4>' + data.list[i].temp.min + '&deg  \\  ' + data.list[i].temp.max + '&deg</h4>' + '</p>';
                 weather += '<p>Wind: ' + data.list[i].speed + '</p>';
                 weather += '<p>Humidity: ' + data.list[i].humidity + '</p></div>';
             }
@@ -159,39 +171,8 @@ $(document).ready(function () {    //iffe
 
     $('#addressBtn').click(Getaddress);
 
-    // =================OLD map settings below
-//    //to Test if basic map generation link is working--do a console.log-->
-//    console.log("test");
-//
-//    // var for the baseline pinpoint marker- exer2
-//    var sanAntonio = { lat: 29.426791, lng: -98.489602 };
-//
-//    // var for the baseline infowindow - exer3
-//    var infowindow = new google.maps.InfoWindow({
-//        content: "Changing the world, one programmer at a time."
-//    });
-//    //var for the newly selected location from below
-//    var infowindow2 = new google.maps.InfoWindow({
-//        content: "This is your selected address."
-//    });
-    //baseline zoom
-//    var zoomVal = 12;
 
-    // Set our baseline map options
-//    var mapOptions = {
-//        zoom: 12,  // Set the zoom level using var as above-> zoom: zoomVal
-//            // Sets Center of map at base entry point location-will be overid later by click box
-//        center: {
-//            lat: 29.426791,
-//            lng: -98.489602
-////            need line below for lat--i just deleted it
-////            lng: parseFloat(document.getElementById('long').value)     //-98.489602
-//        }
-//    };
-//    //Render the map - at initial baseline point
-//    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-//// ====== END of BASIC MAP Creation: ======================
+// ====== END of BASIC MAP Creation: ======================
 
     // always set pinpoint marker - after basic map creation: exer2--can set draggable :true
     var marker = new google.maps.Marker({
@@ -199,7 +180,7 @@ $(document).ready(function () {    //iffe
         draggable: true,
         map: map
     });
-
+        //get
     marker.addListener('dragend',function(){
     getWeather(marker.getPosition().lat(),marker.getPosition().lng());
     });
