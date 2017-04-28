@@ -33,6 +33,11 @@
             text-align: center;
         }
 
+        #addressBar {
+            background: lightblue;
+            text-align: center;
+
+        }
         #map-canvas {
             height: 300px;
             width: 1250px;
@@ -43,22 +48,26 @@
 
 <body>
 <div class="container">
-    <div id="header"><h4>Weather Application</h4></div>
+    <div id="header" ><h4>Weather Application</h4></div>
     <div id="weather" class="row"></div>
 </div>
 
-<div>
-    <br>
-    <input id="address" placeholder="Enter City Here">
-    <button id="addressBtn">Submit</button>
-</div>
 
 <!-- google map canvas setup reqd-->
 <div id="map-canvas"></div>
 
+
+<!-- enter city info here -->
+<div id="addressBar" class="blinkMe">
+    <br>
+    <input id="address" placeholder="Enter City Here">
+    <button id="addressBtn"> Submit </button>
+</div>
+
 <!-- =================================== -->
 <!--this is Jquery CDN   ACTION link-->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
 <!-- Google Map script link -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3n8l3CR3fdf0YTDgXZsJIT1CcMkB_6N0 "></script>
 
@@ -67,7 +76,7 @@
 
 <!--adding moment js externally so we can convert unix time-->
 <script src="js/moment.js"></script>
-
+<!-- =================================== -->
 
 <script> //  ===== BELOW this SCRIPT is the jquery work ==================
 
@@ -87,18 +96,18 @@ $(document).ready(function () {    //iffe
             APPID: "7f8e3aa0aad113510e0c1eaafd1c17b8",
             lat: lat,
             lon: lng,
-            //lat lon above replaced req for -> q: "San Antonio, TX",
+             //lat lng above replaced req for -> q: "San Antonio, TX",
             units: "imperial",
             cnt: '3'
         }).done(function (data) {
-            console.log(data); // checking that data is coming from api
-            console.log(data.list);  // going deeper into the data to see where is temps etc.
-            console.log(data.list[0].temp.min);
-            console.log(data.list[0].temp.max);
-            console.log(data.list[0].clouds);
-            console.log(data.list[0].humidity);
-            console.log(data.list[0].speed);
-            console.log(data.list[0].pressure);
+//            console.log(data); // checking that data is coming from api
+//            console.log(data.list);  // now going deeper into the data to see where is temps etc.
+//            console.log(data.list[0].temp.min);
+//            console.log(data.list[0].temp.max);
+//            console.log(data.list[0].clouds);
+//            console.log(data.list[0].humidity);
+//            console.log(data.list[0].speed);
+//            console.log(data.list[0].pressure);
 //            console.log(data.list[0].weather);
 
             var weather = '<h2 id="cityName">' + data.city.name + '</h2>';
@@ -109,25 +118,26 @@ $(document).ready(function () {    //iffe
                 //This converts time to name of weekday
                 var date = moment(data.list[i].dt * 1000).format('dddd')  //this converts miliseconds to today-ex:thurs
 
-                //This sets up icon
+             //This sets up icon
                 var iconCode = data.list[i].weather[0].icon;
-
                 var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
-
 
                 var location = '';
                 location +=  'data.city.name' ;
-                weather += '<div class="col-xs-4 box"> <h2>' + date + '</h2>';
 
-                weather += "<span class='icon'> </span> <br> ";
+                weather += '<div class="col-xs-4 box"> <h2>' + date + '</h2>';
+                weather += '<br>' + '<span id="icon">' + '<img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png">' + '</span>' + '<br>';
 
                 weather += "<strong>" + data.list[i].weather[0].main + ": </strong>" + data.list[i].weather[0].description + "<br><br>";
                 weather += '<p>' + '<h4>' + data.list[i].temp.min + '&deg  \\  ' + data.list[i].temp.max + '&deg</h4>' + '</p>';
                 weather += '<p>Wind: ' + data.list[i].speed + '</p>';
                 weather += '<p>Humidity: ' + data.list[i].humidity + '</p></div>';
-            }
+
+            } //end of for loop
+
+            //=====This says to write data to HTML weather id
             $('#weather').html(weather);
-            $(".icon").html("<img src='" + iconUrl + "'>");
+
         });  // end of done function
     }  // end of getWeather function
 
@@ -136,10 +146,10 @@ $(document).ready(function () {    //iffe
     var latLon = {
         lat: 29.426791,
         lng: -98.489602
-    }
+    };
     var mapOptions = {
         // SET ZOOM LEVEL
-        zoom: 10,
+        zoom: 6,
         // THIS SETS THE CENTER OF THE MAP AT OUR LOCATION
         center: latLon
 //       ,disableDefaultUI: false    //appears to not matter if applied
@@ -149,7 +159,7 @@ $(document).ready(function () {    //iffe
     // RENDER THE MAP
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    //=======================
+    //================= get address from input box ======
     function Getaddress() {
         var address = $('#address').val();
         var geocoder = new google.maps.Geocoder();
@@ -163,6 +173,10 @@ $(document).ready(function () {    //iffe
             if (status === google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
                 getWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+
+                //this ONE line sets the pinpoint to new typed in location
+            marker.setPosition(results[0].geometry.location);
+
             } else {
                 alert('Geocoding was not successful - STATUS: ' + status);
             }
@@ -170,7 +184,6 @@ $(document).ready(function () {    //iffe
     }
 
     $('#addressBtn').click(Getaddress);
-
 
 // ====== END of BASIC MAP Creation: ======================
 
@@ -180,12 +193,23 @@ $(document).ready(function () {    //iffe
         draggable: true,
         map: map
     });
-        //get
+        // to drag marker to new location--feed into weather api
     marker.addListener('dragend',function(){
-    getWeather(marker.getPosition().lat(),marker.getPosition().lng());
+    getWeather(marker.getPosition().lat(), marker.getPosition().lng());
     });
+// =============== TEST dragable pinpoint
+//    var marker = new google.maps.Marker({
+//        position:
+//        results[0].geometry.location.lat(),
+//        results[0].geometry.location.lng()
+//        });
+//    marker.setMap(map);
 
-     //================================================
+     //=============== blinking address bar =====================
+
+    (function blink() {
+        $('.blinkMe').fadeOut(900).fadeIn(900, blink);
+    })();
 
 })   //Iffe2  jquery closeout bracket
 </script>
