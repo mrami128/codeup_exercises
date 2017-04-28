@@ -39,7 +39,7 @@
 
         }
         #map-canvas {
-            height: 300px;
+            height: 250px;
             width: 1250px;
         }
     </style>
@@ -193,7 +193,7 @@ $(document).ready(function () {    //iffe
         draggable: true,
         map: map
     });
-        // to drag marker to new location--feed into weather api
+        // DRAG marker to new location--feed into weather api
     marker.addListener('dragend',function(){
     getWeather(marker.getPosition().lat(), marker.getPosition().lng());
     });
@@ -208,7 +208,7 @@ $(document).ready(function () {    //iffe
      //=============== blinking address bar =====================
 
     (function blink() {
-        $('.blinkMe').fadeOut(900).fadeIn(900, blink);
+        $('.blinkMe').fadeOut(500).fadeIn(1000, blink);
     })();
 
 })   //Iffe2  jquery closeout bracket
