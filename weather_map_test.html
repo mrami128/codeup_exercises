@@ -32,73 +32,73 @@
 </head>
 <body>
 
-    <div id="resButton">
+<div id="resButton">
 
-        <h1>Weather Application</h1>
+    <h1>Weather Application</h1>
 
-            <div class="container" id="disp1">  </div>
+    <div class="container" id="disp1">  </div>
 
-    </div>
+</div>
 
- <!-----  set up html for MAP div  ----------------->
-
-
-    <label for="lat">Lat:</label>
-    <input type="text" id="lat" value=" 29.426791">
-
-    <label for="long">Long:</label>
-    <input type="text" id="long" value="-98.489602">
+<!-----  set up html for MAP div  ----------------->
 
 
-    <label for="zoom">zoom:</label>
-    <input type="hidden" id="zoom" value="10">
+<label for="lat">Lat:</label>
+<input type="text" id="lat" value=" 29.426791">
 
-    <button id="zoomIn"> +</button>
-    <button id="zoomOut"> -</button>
+<label for="long">Long:</label>
+<input type="text" id="long" value="-98.489602">
 
-    <button id="update">update map</button>
 
-    <p>
-        <input id="homeText" placeholder="Enter Your Address">
-        <button id="homeButt"> FindiT</button>
-    <p>
+<label for="zoom">zoom:</label>
+<input type="hidden" id="zoom" value="10">
 
-    <div id="map-canvas"></div>
+<button id="zoomIn"> +</button>
+<button id="zoomOut"> -</button>
+
+<button id="update">update map</button>
+
+<p>
+    <input id="homeText" placeholder="Enter Your Address">
+    <button id="homeButt"> FindiT</button>
+<p>
+
+<div id="map-canvas"></div>
 
 <!-- Google Map script link -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3n8l3CR3fdf0YTDgXZsJIT1CcMkB_6N0 "></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3n8l3CR3fdf0YTDgXZsJIT1CcMkB_6N0 "></script>
 
 <!-- AJAX Link with jquery only need this 1 for data request-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!-- bootstrap link #2 CDN -this goes below the ajax/javascript CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--adding moment js externally so we can convert unix time-->
-    <script src="js/moment.js"></script>
+<script src="js/moment.js"></script>
 
 <!--this is Jquery CDN   ACTION link-->
-    <script src="https://code.jquery.com/jquery-2.2.4.js"
-            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-            crossorigin="anonymous"> </script>
+<script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"> </script>
 
 
 <script> //  ===== BELOW this SCRIPT is the jquery work ==================
 
 $(document).ready(function(){
-"use strict";
+    "use strict";
 
 //=====  AJAX req to get weather data =======
 
     doOver();
 
-     function doOver() {
-       $.get("http://api.openweathermap.org/data/2.5/forecast/daily/", {
+    function doOver() {
+        $.get("http://api.openweathermap.org/data/2.5/forecast/daily/", {
             APPID: "7f8e3aa0aad113510e0c1eaafd1c17b8",
             q: "San Antonio, TX",
             units: "imperial",
             cnt:'3'
-       }).done(function (data) {
+        }).done(function (data) {
 
-          // convert dt from the api--using moment js file into todays day
+            // convert dt from the api--using moment js file into todays day
             var content = '<h2>' + data.city.name + '</h2>';
 
             console.log(data.list); //  data is coming across then cycle through the data
@@ -123,7 +123,7 @@ $(document).ready(function(){
     //Weather Refresh button
     $('#resButton').click(doOver);
 
- //==================== BASIC Map Setup ===================
+    //==================== BASIC Map Setup ===================
 
     //to Test if basic map generation link is working--do a console.log-->
     console.log("test");
@@ -242,7 +242,7 @@ $(document).ready(function(){
 
 
 
-        // ====== END BASIC Map Setup ======================
+    // ====== END BASIC Map Setup ======================
 
 
 
