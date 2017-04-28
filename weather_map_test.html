@@ -108,7 +108,7 @@ $(document).ready(function(){    //iffe
 
                 var location = '';
                 location += data.city.name;
-                weather += '<div class="col-xs-4 box text-center"><h2>' + date + '</h2>';
+                weather += '<div class="col-xs-4 box text-center"> <h2>' + date + '</h2>';
                 weather += "<span class='icon'> </span> <br> ";
                 weather += "<strong>" + data.list[i].weather[0].main + ": </strong>" + data.list[i].weather[0].description + "<br><br>";
                 weather += '<p>' + '<h4>' + data.list[i].temp.min + '  \\  ' + data.list[i].temp.max + '</h4>' + '</p>';
@@ -120,21 +120,6 @@ $(document).ready(function(){    //iffe
         });  // end of done function
     }  // end of getWeather function
 
-//                // convert dt from the api--using moment js file into todays day
-//                weather += '<div class="col-sm-4 box"><h3>' + date + '</h3>';   //data.list[i].dt -was content+=
-//                weather += '<p>Temp Hi: ' + data.list[i].temp.max + '</p>';
-//                weather += '<p>Temp Low: ' + data.list[i].temp.min + '</p>';
-//                weather += '<p>Humidity: ' + data.list[i].humidity + '</p>' + '</div>';
-//            }
-//            $('#disp1').html(content);
-//
-//        }).fail(function () {  //if data doesnt come from API correctly
-//            console.log('request failed')
-//        }); // end of fail function
-//    }       //end of doOver function
-
-        //Weather app overall box Refresh button
-//    $('#resButton').click(getWeather);  //was (doOver)
 
         //==================== BASIC Map Setup ===================
 
