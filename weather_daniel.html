@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Map Daniel</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        main {
+            color: #4b2222;
+            text-shadow: 0px 5px 5px rgba(150, 150, 150, 0.45);
+        }
+        body {
+            background-color: #8dd5ad;
+        }
+        #header {
+            text-align: center;
+            transition: 0.8s;
+        }
+        #header:hover {
+            text-align: center;
+            color: white;
+            text-shadow: 0px 5px 3px rgba(150, 150, 150, 0.55);
+            transition: 0.8s;
+        }
+        .col-xs-4 {
+            background-color: rgba(0, 255, 245, 0.24);
+            margin: 1px;
+            border: solid black 3px;
+            width: 32.333333%;
+            transition: 0.8s;
+        }
+        .col-xs-4:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+            margin: 1px;
+            border: solid black 3px;
+            width: 32.333333%;
+            -webkit-box-shadow: 0px 22px 0px 0px rgba(0, 0, 0, 0.35);
+            -moz-box-shadow: 0px 22px 0px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0px 22px 0px 0px rgba(0, 0, 0, 0.35);
+            transition: 0.8s;
+        }
+
+        #map-canvas {
+            width: 100%;
+            height: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="header"><h1>Weather Application</h1> </div>
+        <div id="weather" class="row"> </div>
+    </div>
+
+        <br>
+
+    <input id="address" placeholder="Address:">
+    <button id="addressBtn">Submit</button>
+
+    <div id='map-canvas'> </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">  </script>
+<script src="js/moment.js">  </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8JcDb63_ThFb0x0gPnjyFXv4VThpieHo">  </script>
+
+
+<script>
+    'use strict';
+    var i;
+    function getWeather(lat, lng) {
+        $.get("http://api.openweathermap.org/data/2.5/forecast/daily/", {
+            APPID: "a98c1b09577559200e9dc5d063ad50b1",
+            lat: lat,
+            lon: lng,
+            units: "imperial"
+        }).done(function (data) {
+            console.log(data);
+            console.log(data.list[0].temp.min);
+            console.log(data.list[0].temp.max);
+            console.log(data.list[0].clouds);
+            console.log(data.list[0].humidity);
+            console.log(data.list[0].speed);
+            console.log(data.list[0].pressure);
+
+            var weather = '<h3>' + data.city.name + '</h3>';
+
+            for (i = 0; i < 3; i++) {
+                var date = moment(data.list[i].dt * 1000).format('dddd');
+
+                var iconCode = data.list[i].weather[0].icon;
+                var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+
+                var location = '';
+                location += data.city.name;
+
+                weather += '<div class="col-xs-4 box text-center"><h2>' + date + '</h2>';
+                weather += "<span class='icon'></span><br><br>";
+                weather += "<strong>" + data.list[i].weather[0].main + ": </strong>" + data.list[i].weather[0].description + "<br><br>";
+                weather += '<p>' + '<h4>' + data.list[i].temp.min + '\\' + data.list[i].temp.max + '</h4>' + '</p>';
+                weather += '<p>Clouds: ' + data.list[i].clouds + '</p>';
+                weather += '<p>Humidity: ' + data.list[i].humidity + '</p>';
+                weather += '<p>Wind: ' + data.list[i].speed + '</p>';
+                weather += '<p>Pressure: ' + data.list[i].pressure + '</p></div>';
+            }
+            $('#weather').html(weather);
+            $(".icon").html("<img src='" + iconUrl + "'>");
+        });
+    }
+    //        ---------- GOOGLE MAPS API ----------
+    var mapOptions = {
+        // SET ZOOM LEVEL
+        zoom: 10,
+        // THIS SETS THE CENTER OF THE MAP AT OUR LOCATION
+        center: {
+            lat: 42.3601,
+            lng: -71.0589
+        }
+//        ,disableDefaultUI: false
+    };
+    getWeather(mapOptions.center.lat, mapOptions.center.lng);
+    // RENDER THE MAP
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    //    // GEOCODING
+    //
+    //    var address = "Boston, MA";
+    //
+    //    var geocoder = new google.maps.Geocoder();
+    //
+    //    geocoder.geocode({'address': address}, function (results, status) {
+    //
+    //        // CHECK FOR A SUCCESSFUL RESULT
+    //
+    //        if (status === google.maps.GeocoderStatus.OK) {
+    //
+    //            map.setCenter(results[0].geometry.location);
+    //            getWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+    //
+    //        } else {
+    //
+    //            alert('Geocoding was not successful - STATUS: ' + status);
+    //        }
+    //    })
+    function Getaddress(){
+        var address = $('#address').val();
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': address}, function (results, status) {
+            // CHECK FOR A SUCCESSFUL RESULT
+            if (status === google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                getWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+            } else {
+                alert('Geocoding was not successful - STATUS: ' + status);
+            }
+        })
+    }
+    $('#addressBtn').click(Getaddress);
+
+</script>
+</body>
+</html>
