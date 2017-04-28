@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <style>
-        body{
+        body {
             background-color: lightgray;
         }
+
         #header {
             text-align: center;
             border: 1px solid black;
@@ -23,6 +24,7 @@
             margin: 1px;
             border: solid black 2px;
             width: 33%;
+            text-align: center;
         }
 
         #map-canvas {
@@ -34,51 +36,48 @@
 </head>
 
 <body>
-    <div class="container">
-        <div id="header"><h3>Weather Application</h3></div>
-        <div id="weather" class="row"></div>
-    </div>
+<div class="container">
+    <div id="header"><h3>Weather Application</h3></div>
+    <div id="weather" class="row"></div>
+</div>
 
-    <div>
-        <br>
+<div>
+    <br>
     <input id="address" placeholder="Enter City Here">
     <button id="addressBtn">Submit</button>
-    </div>
+</div>
 
-    <!-- google map canvas setup reqd-->
+<!-- google map canvas setup reqd-->
 <div id="map-canvas"></div>
 
 <!-- =================================== -->
-    <!-- Google Map script link -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3n8l3CR3fdf0YTDgXZsJIT1CcMkB_6N0 ">  </script>
+<!--this is Jquery CDN   ACTION link-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<!-- Google Map script link -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3n8l3CR3fdf0YTDgXZsJIT1CcMkB_6N0 "></script>
 
-    <!-- AJAX Link with jquery only need this 1 for data request-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">  </script>
+<!-- bootstrap link #2 CDN -this goes below the ajax/javascript CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- bootstrap link #2 CDN -this goes below the ajax/javascript CDN -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">  </script>
-
-    <!--adding moment js externally so we can convert unix time-->
-<script src="js/moment.js">  </script>
-
-    <!--this is Jquery CDN   ACTION link-->
-<script src="https://code.jquery.com/jquery-2.2.4.js"
-        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-        crossorigin="anonymous"> </script>
+<!--adding moment js externally so we can convert unix time-->
+<script src="js/moment.js"></script>
 
 
 <script> //  ===== BELOW this SCRIPT is the jquery work ==================
 
-$(document).ready(function(){    //iffe
-"use strict";
+$(document).ready(function () {    //iffe
+    "use strict";
 
 //=====  AJAX req to get weather data =======
 
-    getWeather();   //prev had a doOver func wrapping all this for refresh
+    function getWeather(lat, lng) {
 
-    function getWeather(lat,lng) {
+        if(!lat || !lng){       //this sets a default value in case NaN, or error long lat data are fed in
+            lat = 29.426791;
+            lng = -98.489602;
+        }
 
-        $.get("http://api.openweathermap.org/data/2.5/forecast/daily/", {
+        $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
             APPID: "7f8e3aa0aad113510e0c1eaafd1c17b8",
             lat: lat,
             lon: lng,
@@ -97,18 +96,18 @@ $(document).ready(function(){    //iffe
 
             var weather = '<h2>' + data.city.name + '</h2>';
 
-                //  this FOR loop goes through the api data writes to html
+            //  this FOR loop goes through the api data writes to html
             for (var i = 0; i < data.list.length; i++) {
 
-                    //This converts time to name of weekday
+                //This converts time to name of weekday
                 var date = moment(data.list[i].dt * 1000).format('dddd')  //this converts miliseconds to today-ex:thurs
-                    //This sets up icon
+                //This sets up icon
                 var iconCode = data.list[i].weather[0].icon;
                 var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
 
                 var location = '';
                 location += data.city.name;
-                weather += '<div class="col-xs-4 box text-center"> <h2>' + date + '</h2>';
+                weather += '<div class="col-xs-4 box"> <h2>' + date + '</h2>';
                 weather += "<span class='icon'> </span> <br> ";
                 weather += "<strong>" + data.list[i].weather[0].main + ": </strong>" + data.list[i].weather[0].description + "<br><br>";
                 weather += '<p>' + '<h4>' + data.list[i].temp.min + '  \\  ' + data.list[i].temp.max + '</h4>' + '</p>';
@@ -121,43 +120,44 @@ $(document).ready(function(){    //iffe
     }  // end of getWeather function
 
 
-        //==================== BASIC Map Setup ===================
-
-        var mapOptions = {
-            // SET ZOOM LEVEL
-            zoom: 10,
-            // THIS SETS THE CENTER OF THE MAP AT OUR LOCATION
-            center: {
-                lat: 29.426791,
-                lng: -98.489602
-            }
+    //==================== BASIC Map Setup ===================
+    var latLon = {
+        lat: 29.426791,
+        lng: -98.489602
+    }
+    var mapOptions = {
+        // SET ZOOM LEVEL
+        zoom: 10,
+        // THIS SETS THE CENTER OF THE MAP AT OUR LOCATION
+        center: latLon
 //       ,disableDefaultUI: false    //appears to not matter if applied
-        };
-        getWeather(mapOptions.center.lat, mapOptions.center.lng);
+    };
+    getWeather( );
 
-        // RENDER THE MAP
-        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    // RENDER THE MAP
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-   //=======================
-        function Getaddress(){
-            var address = $('#address').val();
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({'address': address}, function (results, status) {
-                // Checking for SUCCESSFUL GEOCode Result
-                    //  if you want to see lat info->
-                    console.log(results[0].geometry.location.lat());
-                    //  if you want to see lon info->
-                    console.log(results[0].geometry.location.lng());
+    //=======================
+    function Getaddress() {
+        var address = $('#address').val();
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': address}, function (results, status) {
+            // Checking for SUCCESSFUL GEOCode Result
+            //  if you want to see lat info->
+            console.log(results[0].geometry.location.lat());
+            //  if you want to see lon info->
+            console.log(results[0].geometry.location.lng());
 
-                if (status === google.maps.GeocoderStatus.OK) {
-                    map.setCenter(results[0].geometry.location);
-                    getWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-                } else {
-                    alert('Geocoding was not successful - STATUS: ' + status);
-                }
-            })
-        }
-        $('#addressBtn').click(Getaddress);
+            if (status === google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                getWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+            } else {
+                alert('Geocoding was not successful - STATUS: ' + status);
+            }
+        })
+    }
+
+    $('#addressBtn').click(Getaddress);
 
     // =================OLD map settings below
 //    //to Test if basic map generation link is working--do a console.log-->
@@ -190,93 +190,23 @@ $(document).ready(function(){    //iffe
 //    };
 //    //Render the map - at initial baseline point
 //    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-//
+
 //// ====== END of BASIC MAP Creation: ======================
-//
-//    // always set pinpoint marker - after basic map creation: exer2
-//    var marker = new google.maps.Marker({
-//        position: sanAntonio,
-//        map: map
-//    });
-//
-////    //NOW activate infowindow for sanAntonio pinpoint- exer3:
-////    infowindow.open(map, marker);
-//
-//
-////====== Location Update  based on preset/adjustable long- lat boxes =====================
-//
-//    //this listens for 'update button' click then reads
-//    var update = document.getElementById('update');
-//    update.addEventListener('click', function () {
-//
-//        var mapOptions = {
-//            // Set the zoom level using var as above-> zoom: zoomVal
-//            zoom: zoomVal,
-//            // This sets the center of the map at our location
-//            center: {
-//                lat: parseFloat(document.getElementById('lat').value),     // 29.426791 -start lat
-//                lng: parseFloat(document.getElementById('long').value)     //-98.489602 -start lng
-//            }
-//        };
-//        map.setCenter(mapOptions.center);
-//    });
-//
-//======== Zoom Update=================================
-//    var zoomIn = document.getElementById('zoomIn');
-//    zoomIn.addEventListener('click', function () {
-//        zoomVal+= 2;
-//        console.log(zoomVal)
-//        map.setZoom(zoomVal);
-//    })
-//    var zoomOut = document.getElementById('zoomOut');
-//    zoomOut.addEventListener('click', function () {
-//        zoomVal -= 2;
-//        console.log(zoomVal)
-//        map.setZoom(zoomVal);
-//    })
 
-    //================================================
-//
-////    $('#homeButt').click(function () {
-////            //when homebutt gets clicked-func then reads home text from box
-////        var address = document.getElementById('homeText').value;   //"austin";
-//
-//            // then Geocoder Initiates  object
-//        var geocoder = new google.maps.Geocoder();
-//
-//            // Geocodes our address from var above
-//        geocoder.geocode({"address": address}, function (results, status) {
-//
-//            //  if you want to see lat info->
-//            console.log(results[0].geometry.location.lat());
-//            //  if you want to see lon info->
-//            console.log(results[0].geometry.location.lng());
-//
-//            // Geocode now tests for a successful address check result
-//            if (status == google.maps.GeocoderStatus.OK) {
-//
-//                // Recenters the map over THIS latest address
-//               map.setCenter(results[0].geometry.location);
-//
-//                // AND sets new infobox marker
-//               var marker = new google.maps.Marker({
-//                    position: results[0].geometry.location,
-//                    map: map
-//               }); //geo marker  new loc end
-////                infowindow2.open(map, marker);
-////                map.setZoom(8);
-//            } else {
-//                // Show an error 'bec address test failed' message with fail status->request failed
-//                alert("Geocoding was not successful - STATUS: " + status);
-//            }
-//        });   //Geocode func endbrace
-////    })      //myHomebtn func end brace
-//
-//// })();   // js iffe func end brace
-//
-//    // ====== END BASIC Map Setup ======================
+    // always set pinpoint marker - after basic map creation: exer2--can set draggable :true
+    var marker = new google.maps.Marker({
+        position: latLon,
+        draggable: true,
+        map: map
+    });
 
-    })   //Iffe2  jquery closeout bracket
+    marker.addListener('dragend',function(){
+    getWeather(marker.getPosition().lat(),marker.getPosition().lng());
+    });
+
+     //================================================
+
+})   //Iffe2  jquery closeout bracket
 </script>
 </body>
 </html>
