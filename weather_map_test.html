@@ -15,14 +15,25 @@
         }
 
         #header {
-            text-align: center;
+            text-align: left;
             border: 1px solid black;
-            background-color: lightblue;
+            background-color: black;
+            color:grey;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top:8px;
+        }
+        #header h4{
+            display: inline-block;
+        }
+        #header input,
+        #header button{
+            float: right;
         }
 
         #cityName {
             color:red;
-            text-blink: fast;
+            text-align: center;
         }
 
         .col-xs-4 {
@@ -33,23 +44,33 @@
             text-align: center;
         }
 
-        #addressBar {
-            background: lightblue;
-            text-align: center;
-
-        }
         #map-canvas {
-            height: 250px;
-            width: 1250px;
+            height: 270px;
+            width: 1160px;
+            margin-left: 55px;
+            margin-top: 10px;
+            border: 1px solid black;
         }
+
     </style>
 
 </head>
 
 <body>
 <div class="container">
-    <div id="header" ><h4>Weather Application</h4></div>
-    <div id="weather" class="row"></div>
+    <div id="header" >
+        <h4>Weather Application</h4>
+        <!-- enter city info here -->
+        <!--<p id="addressBar" class="text-right">-->
+
+        <input id="address" placeholder="Enter City Here">
+        <button id="addressBtn"> Submit </button>
+
+    </div>
+
+    <div id="weather" class="row">
+        <!-- all the api data will be here -->
+    </div>
 </div>
 
 
@@ -57,12 +78,6 @@
 <div id="map-canvas"></div>
 
 
-<!-- enter city info here -->
-<div id="addressBar" class="blinkMe">
-    <br>
-    <input id="address" placeholder="Enter City Here">
-    <button id="addressBtn"> Submit </button>
-</div>
 
 <!-- =================================== -->
 <!--this is Jquery CDN   ACTION link-->
@@ -87,7 +102,7 @@ $(document).ready(function () {    //iffe
 
     function getWeather(lat, lng) {
 
-        if(!lat || !lng){       //this sets a default value in case NaN, or error long lat data are fed in
+        if (!lat || !lng) {     //this sets a default value in case NaN, or error long lat data are fed in
             lat = 29.426791;
             lng = -98.489602;
         }
@@ -96,7 +111,7 @@ $(document).ready(function () {    //iffe
             APPID: "7f8e3aa0aad113510e0c1eaafd1c17b8",
             lat: lat,
             lon: lng,
-             //lat lng above replaced req for -> q: "San Antonio, TX",
+            //lat lng above replaced req for -> q: "San Antonio, TX",
             units: "imperial",
             cnt: '3'
         }).done(function (data) {
@@ -118,12 +133,12 @@ $(document).ready(function () {    //iffe
                 //This converts time to name of weekday
                 var date = moment(data.list[i].dt * 1000).format('dddd')  //this converts miliseconds to today-ex:thurs
 
-             //This sets up icon
+                //This sets up icon
                 var iconCode = data.list[i].weather[0].icon;
                 var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
 
                 var location = '';
-                location +=  'data.city.name' ;
+                location += 'data.city.name';
 
                 weather += '<div class="col-xs-4 box"> <h2>' + date + '</h2>';
                 weather += '<br>' + '<span id="icon">' + '<img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png">' + '</span>' + '<br>';
@@ -144,7 +159,7 @@ $(document).ready(function () {    //iffe
 
     //==================== BASIC Map Setup ===================
     var latLon = {
-        lat: 29.426791,
+        lat: 27.426791,
         lng: -98.489602
     };
     var mapOptions = {
@@ -154,7 +169,7 @@ $(document).ready(function () {    //iffe
         center: latLon
 //       ,disableDefaultUI: false    //appears to not matter if applied
     };
-    getWeather( );
+    getWeather();
 
     // RENDER THE MAP
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -175,7 +190,7 @@ $(document).ready(function () {    //iffe
                 getWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
 
                 //this ONE line sets the pinpoint to new typed in location
-            marker.setPosition(results[0].geometry.location);
+                marker.setPosition(results[0].geometry.location);
 
             } else {
                 alert('Geocoding was not successful - STATUS: ' + status);
@@ -187,29 +202,23 @@ $(document).ready(function () {    //iffe
 
 // ====== END of BASIC MAP Creation: ======================
 
-    // always set pinpoint marker - after basic map creation: exer2--can set draggable :true
+    // Always SET pinpoint marker after basic map creation: also set draggable :true
     var marker = new google.maps.Marker({
         position: latLon,
         draggable: true,
         map: map
     });
-        // DRAG marker to new location--feed into weather api
-    marker.addListener('dragend',function(){
-    getWeather(marker.getPosition().lat(), marker.getPosition().lng());
+    // DRAG marker to new location--feed into weather api
+    marker.addListener('dragend', function () {
+        getWeather(marker.getPosition().lat(), marker.getPosition().lng());
     });
-// =============== TEST dragable pinpoint
-//    var marker = new google.maps.Marker({
-//        position:
-//        results[0].geometry.location.lat(),
-//        results[0].geometry.location.lng()
-//        });
-//    marker.setMap(map);
 
-     //=============== blinking address bar =====================
+    //=============== blinking address bar =====================
 
-    (function blink() {
-        $('.blinkMe').fadeOut(500).fadeIn(1000, blink);
-    })();
+//    (function blink() {
+//        $('.blinkMe').fadeOut(500).fadeIn(1000, blink);
+//    })();
+
 
 })   //Iffe2  jquery closeout bracket
 </script>
