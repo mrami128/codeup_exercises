@@ -1,7 +1,15 @@
+h1 {
+    margin-bottom: 10px;
+}
 
+.box-container{         /*THIS is main box-not body-not h1    also opt/sht+up/ dwn moves sel codelines  up or dwn*/
+    width: 900px;
+    height: 500px;
+    border: 1px solid black;
+}
 /*note in css*/
 
-.box{
+.box{                 /*class for each indiv box red blue green etc*/
     width: 50px;
     height: 50px;
     border: 1px solid black;
@@ -9,16 +17,16 @@
     margin-bottom:20px;
     margin-right: 50px;
     padding: 10px;
-    float: left;
+    float: left;      /* float left gets all the divs to line up sideways until contain full then moves downrow */
     font-size: 14px;
-    position:relative;
+    position:relative; /* relatve is needed so that absolut in boxes can allw symbol to move upout of each rt corner of boxes*/
 }
 
-.box>img{
+
+.box>img{                     /*img is dir child of box class  -moves symbol upper rght corner*/
     position: absolute;
     top:-35px;
     right:-35px;
-
 }
 
 #box-red{
@@ -27,19 +35,17 @@
 
 #box-orange{
     background-color: orange;
-
 }
 
 #box-yellow{
     background-color: yellow;
-
 }
 
 #box-green{
     background-color: green;
-    /*clear: left;*/
+    /*clear: left;     ==========CAN move green box down to nex row--OR use nth child with pseudo: indicator:*/
 }
-
+                        /*  .box:nth-child(3), .box:nth-child(5) { clear:left; } */
 #box-blue{
     background-color: blue;
 
