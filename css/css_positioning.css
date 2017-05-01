@@ -24,7 +24,7 @@ h1 {
 
 
 .box>img{                     /*img is dir child of box class  -moves symbol upper rght corner*/
-    position: absolute;
+    position: absolute;     /*  set chevron into upper right corner*/
     top:-35px;
     right:-35px;
 }
