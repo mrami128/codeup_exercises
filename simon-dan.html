@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Simon--DANIEL</title>
+    <!-- bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Internal CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+        body {
+            font-family: 'Varela Round', sans-serif;
+            text-align: center;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7f7f7+0,d1d1d1+100 */
+            background: rgb(247, 247, 247); /* Old browsers */
+            /*background: -moz-radial-gradient(center, ellipse cover, rgba(247, 247, 247, 1) 0%, rgba(209, 209, 209, 1) 100%); !* FF3.6-15 *!*/
+            /*background: -webkit-radial-gradient(center, ellipse cover, rgba(247, 247, 247, 1) 0%, rgba(209, 209, 209, 1) 100%); !* Chrome10-25,Safari5.1-6 *!*/
+            background: radial-gradient(ellipse at center, rgba(247, 247, 247, 1) 0%, rgba(209, 209, 209, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#d1d1d1', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #backgroundBox {
+            width: 844px;
+            height: 317px;
+            margin: 10px;
+            /*background-color: rgba(0, 0, 0, .1);*/
+            margin: 0 auto;
+            margin-bottom: 25px;
+            margin-top: 25px;
+
+            /*border-radius: 0px;*/
+            /*-webkit-box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.60);*/
+            /*-moz-box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.60);*/
+            /*box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.60);*/
+        }
+
+        .box {
+            float: left;
+            width: 200px;
+            height: 200px;
+            margin: 0px;
+            border-radius: 0px;
+            opacity: .5;
+            border: 3px solid black;
+        }
+
+        #topLeft {
+            background-color: #ff4d51;
+        }
+
+        #topRight {
+            background-color: #389fff;
+        }
+
+        #bottomLeft {
+            background-color: #5eca4c;
+            clear: left;
+        }
+
+        #bottomRight {
+            background-color: #ffe44c;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        ol, h2 {
+            text-align: left;
+            margin-bottom: 0px;
+        }
+
+        #pressStart, #watchSequence, #repeatSequence {
+            font-size: 18px;
+        }
+
+        #InstructionsBox {
+            height: 150px;
+            width: 500px;
+        }
+
+        #start {
+            background-color: #f9fffb;
+            transition: 0.8s ease;
+        }
+
+        #start:hover {
+            background-color: #959b97;
+            color: white;
+            transition: 0.8s ease;
+        }
+
+        #SimonHeader {
+            margin-top: 20px;
+        }
+
+        .HeaderPiece {
+            display: inline;
+        }
+
+        #S {
+            transition: 1.5s ease;
+        }
+
+        #S:hover {
+            color: #ff4d51;
+            transition: 0.3s ease;
+        }
+
+        #I {
+            transition: 1.5s ease;
+        }
+
+        #I:hover {
+            color: #389fff;
+            transition: 0.3s ease;
+        }
+
+        #M {
+            transition: 1.5s ease;
+        }
+
+        #M:hover {
+            color: #5eca4c;
+            transition: 0.3s ease;
+        }
+
+        #P {
+            transition: 1.5s ease;
+        }
+
+        #P:hover {
+            color: #ffe44c;
+            transition: 0.3s ease;
+        }
+
+        #L {
+            transition: 1.5s ease;
+        }
+
+        #L:hover {
+            color: #ff4d51;
+            transition: 0.3s ease;
+        }
+
+        #E {
+            transition: 1.5s ease;
+        }
+
+        #E:hover {
+            color: #389fff;
+            transition: 0.3s ease;
+        }
+
+        #O {
+            transition: 1.5s ease;
+        }
+
+        #O:hover {
+            color: #389fff;
+            transition: 0.3s ease;
+        }
+
+        #N {
+            transition: 1.5s ease;
+        }
+
+        #N:hover {
+            color: #389fff;
+            transition: 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="SimonHeader">
+        <h1 id="S" class="HeaderPiece">SIMON</h1>
+        <!--<h1 id="I" class="HeaderPiece">i</h1>-->
+        <!--<h1 id="M" class="HeaderPiece">m</h1>-->
+        <!--<h1 id="P" class="HeaderPiece">p</h1>-->
+        <!--<h1 id="L" class="HeaderPiece">l</h1>-->
+        <!--<h1 id="E" class="HeaderPiece">e</h1>-->
+        <!--<h1 id="S2" class="HeaderPiece">S</h1>-->
+        <!--<h1 id="I2" class="HeaderPiece">i</h1>-->
+        <!--<h1 id="M2" class="HeaderPiece">m</h1>-->
+        <!--<h1 id="O" class="HeaderPiece">o</h1>-->
+        <!--<h1 id="N" class="HeaderPiece">n</h1>-->
+    </div>
+    <div id="backgroundBox">
+        <div class="box" id="topLeft">red</div>  <!-- -->
+        <div class="box" id="topRight">blu</div>  <!-- -->
+        <div class="box" id="bottomLeft">gre</div> <!-- -->
+        <div class="box" id="bottomRight">yell</div> <!-- -->
+    </div>
+    <div id="pressStart">Press Start!</div>
+    <!--<div id="watchSequence">Watch Simon's Pattern!</div>-->
+    <!--<div id="repeatSequence">Repeat Simon's Pattern!</div>-->
+    <button id="start" class="btn btn-default">Start!</button>
+    <div id="InstructionsBox"><h2>Instructions</h2>
+        <ol>
+            <li>Click start</li>
+            <li>Watch Simon's pattern</li>
+            <li>Repeat the pattern yourself</li>
+            <li>Simon will repeat the pattern with 1 additional square highlighted</li>
+            <li>Numbers 3 and 4 repeat until you make an error</li>
+        </ol>
+    </div>
+</div>
+
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<!-- bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<!-- Internal JS -->
+<script>
+    "use strict";
+    // set initial game state
+//    $('#repeatSequence').hide();
+//    $('#watchSequence').hide();
+    var playerPressCount = 0;
+    var sequence = [];
+
+
+    // listen for start button then call SimonsTurn()
+    $('#start').click(function () {
+        playerPressCount = 0;
+        sequence.length = 0;
+        watchSequence();
+        simonsTurn();
+        countLevel();
+    });
+    // call picSquare() to add a box to sequence array
+    // call animateSequence() to highlight a box in the sequence every second
+    function simonsTurn() {
+        picSquare();
+        var i = 0;
+        var intervalId = setInterval(function () {
+            animateSequence(i);
+            i++;
+            if (i >= sequence.length) {
+                clearInterval(intervalId);
+                repeatSequence();
+            }
+        }, 1000);
+    }
+    // loop through sequence highlighting boxes
+    function animateSequence(i) {
+        if (sequence[i] == 'topLeft') {
+            animateBox('#topLeft');
+        } else if (sequence[i] == 'topRight') {
+            animateBox('#topRight');
+        } else if (sequence[i] == 'bottomLeft') {
+            animateBox('#bottomLeft');
+        } else if (sequence[i] == 'bottomRight') {
+            animateBox('#bottomRight');
+        }
+        ;
+    }
+    // pic a random box and add it to sequence array
+    function picSquare() {
+        var number = Math.random();
+        switch (true) {
+            case (number < 0.25):
+                sequence.push('topLeft');
+                break;
+            case (number >= 0.25 && number < 0.5):
+                sequence.push('topRight');
+                break;
+            case (number >= 0.5 && number < 0.75):
+                sequence.push('bottomLeft');
+                break;
+            case (number >= 0.75):
+                sequence.push('bottomRight');
+                break;
+        }
+        ;
+    };
+    // listen for user click on box, compare to corresponding sequence aray element
+    // if correct before end of sequens add 1 to player count
+    // if corect at end of sequense call simonsTurn()
+    // if incorect call gameOver()
+    $('.box').click(function () {
+        animateBox('#' + $(this).attr('id'));
+        if (sequence[playerPressCount] == $(this).attr('id')) {
+            playerPressCount++;
+            if (sequence.length == playerPressCount) {
+                watchSequence();
+                simonsTurn();
+                playerPressCount = 0;
+                countLevel();
+            }
+        } else {
+            gameOver();
+            $('h1').html('Simple Simon');
+        }
+    });
+    // Tell user game is over and resets playerPressCount and sequence array
+    function gameOver() {
+        $('#pressStart').show();
+        $('#pressStart').html('<i>Game Over!</i>' + '<br>You reached level ' + sequence.length + '<br>Press start to play again!');
+        $('#repeatSequence').hide();
+        $('#watchSequence').hide();
+        $('h1').html('Simple Simon');
+        playerPressCount = 0;
+        sequence.length = 0;
+    }
+    function animateBox(boxid) {
+        $(boxid).animate({opacity: 1}, 100);
+        $(boxid).animate({borderWidth: 1}, 100);
+        $(boxid).animate({opacity: .5}, 100);
+        $(boxid).animate({borderWidth: 0}, 100);
+    }
+    function repeatSequence() {
+        setTimeout(function () {
+            $('#repeatSequence').show();
+            $('#watchSequence').hide();
+            $('#pressStart').hide();
+        }, 500);
+    }
+    function watchSequence() {
+        setTimeout(function () {
+            $('#watchSequence').show();
+            $('#repeatSequence').hide();
+            $('#pressStart').hide();
+        }, 500);
+    }
+    function countLevel() {
+        setTimeout(function () {
+            $('h1').html('Level ' + sequence.length);
+        }, 300);
+    }
+</script>
+</body>
+</html>

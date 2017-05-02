@@ -5,18 +5,20 @@
     <title>Title</title>
 
     <style>
-        .container{
+        .container {
             width: 450px;
-            border:1px solid red;
+            border: 1px solid red;
             margin-left: 25px;
             padding-left: 25px;
         }
-        .controlPanel{
-            width:400px;
+
+        .controlPanel {
+            width: 400px;
             text-align: center;
-            border:1px solid yellow;
+            border: 1px solid yellow;
         }
-        #gameTitle{
+
+        #gameTitle {
             font-size: 40px;
         }
 
@@ -26,7 +28,8 @@
             width: 90px;
             background-color: lightgrey;
         }
-        #hiScore{
+
+        #hiScore {
             margin-left: 20px;
             margin-bottom: 20px;
             height: 40px;
@@ -34,39 +37,39 @@
             background-color: lightgrey;
         }
 
-        .box-container{         /*THIS is main box-not body-not h1    also opt/sht+up/ dwn moves sel codelines  up or dwn*/
+        .box-container { /*THIS is main box-not body-not h1    also opt/sht+up/ dwn moves sel codelines  up or dwn*/
             width: 400px;
             height: 400px;
             border: 3px solid green;
         }
 
-        .box{                 /*class for each indiv box red blue green  yellow below*/
+        .box { /*class for each indiv box red blue green  yellow below*/
             width: 90px;
             height: 90px;
             border: 2px solid black;
             margin-top: 60px;
-            margin-bottom:20px;
-            margin-left:50px;
+            margin-bottom: 20px;
+            margin-left: 50px;
             margin-right: 20px;
             padding: 10px;
-            float: left;      /* float left gets all the divs to line up sideways until contain full then moves downrow */
+            float: left; /* float left gets all the divs to line up sideways until contain full then moves downrow */
             font-size: 14px;
         }
 
-        #red1{
+        #red1 {
             background-color: red;
         }
 
-        #green2{
+        #green2 {
             background-color: green;
         }
 
-        #blue3{
-            background-color: blue;    /* ====clear will move the green box down to nex row--OR can use nth child with pseudo: indicator:*/
-            clear: left;             /*  .box:nth-child(3), .box:nth-child(5) { clear:left; } */
+        #blue3 {
+            background-color: blue; /* ====clear will move the green box down to nex row--OR can use nth child with pseudo: indicator:*/
+            clear: left; /*  .box:nth-child(3), .box:nth-child(5) { clear:left; } */
         }
 
-        #yellow4{
+        #yellow4 {
             background-color: #ffc455;
         }
     </style>
@@ -78,10 +81,10 @@
 <div class="container">
 
     <div class="controlPanel">
-            <h1 id="gameTitle">    Simon Game   </h1>
+        <h1 id="gameTitle"> Simon Game </h1>
 
-            <br>
-            <h3 id="level">Watch pattern below. <br>attempt to match that pattern</h3>
+        <br>
+        <h3 id="level">Watch pattern below. <br>attempt to match that pattern</h3>
 
 
         <button id="start">Start Game</button>
@@ -89,16 +92,16 @@
     </div>
 
     <div class="box-container">
-            <div id="red1" class="box" data-num="1"> red1 </div>
-            <div id="green2" class="box" data-num="2"> green2 </div>
-            <div id="blue3" class="box" data-num="3"> blue3 </div>
-            <div id="yellow4" class="box" data-num="4"> yellow4 </div>
+        <div id="red1" class="box" data-num="1"> red1</div>
+        <div id="green2" class="box" data-num="2"> green2</div>
+        <div id="blue3" class="box" data-num="3"> blue3</div>
+        <div id="yellow4" class="box" data-num="4"> yellow4</div>
     </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.js"
         integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-        crossorigin="anonymous"> </script>
+        crossorigin="anonymous"></script>
 
 
 <script>
@@ -106,96 +109,99 @@
     $(document).ready(function () {
         "use strict";
 
+        function flash(element) {
+            $(element).animate({
+                opacity: .10
+            }, 800).animate({
+                opacity: 1
+            }, 800);
+        }
 
 //$('#hiScore').click(){}
 
 
-$('#start').click( function() {
+        $('#start').click(function () {
 
-    var computerArray = [];
-    var level = 1;
+            var computerArray = [];
+            var level = 1;
 
-    $('#level').html('Level: '+level);
+            $('#level').html('Level: ' + level);
 
-    getNextNum();
-
-function getNextNum() {  //=============================>
-
-        if (level < 20) {
-
-        var newNum = Math.floor((Math.random() * 4) + 1);
-
-        computerArray.push(newNum);  //==== push this new number onto array
-//for array iterate=====
-            for(var i=0;i<computerArray.length ;i++){
-            console.log("number at index:"+i+" is "+computerArray[i]);}
-//======================
-        console.log('computerArray New number is:' + computerArray[0]);
-        console.log(' length is: ' + computerArray.length);
-        $('#level').html('Level: ' + level);
-
-    } else {
-        console.log('you have reached level 20 you win');
-    }
-
-    //GET NEXtNUM end brace=========================================>
-    //====== clicking action =============
-
-    function flash(element) {
-        $(element).animate({
-            opacity: .10
-        }, 800).animate({
-            opacity: 1
-        }, 800);
-    }
-
-    $('.box').click(function () {
-        var btnValue = $(this).attr('data-num');
-        if (btnValue == computerArray[0]) {
-            level++;
-            console.log('correct: pass onto level' + level);
-            //alert('You Completed level 1 - YOU WIN!! GAME OVER');
             getNextNum();
 
-        } else {
-            console.log('failed at level' + level);
-            level = 0;
-            console.log('reset: level is now ' + level);
-        }
-    }); //.box click func braces
+            function getNextNum() {  //=============================>
+
+                if (level < 20) {
+
+                    var newNum = Math.floor((Math.random() * 4) + 1);
+
+                    computerArray.push(newNum);  //==== push this new number onto array
+//for array iterate=====
+                    for (var i = 0; i < computerArray.length; i++) {
+                        console.log("number at index:" + i + " is " + computerArray[i]);
+                    }
+//======================
+                    console.log('computerArray New number is:' + computerArray[0]);
+                    console.log(' length is: ' + computerArray.length);
+                    $('#level').html('Level: ' + level);
+
+                } else {
+                    console.log('you have reached level 20 you win');
+                }
+
+                //GET NEXtNUM end brace=========================================>
+                //====== clicking action =============
+
+
+
+                $('.box').on('click', function () {
+                    var btnValue = $(this).attr('data-num');
+                    if (btnValue == computerArray[0]) {
+                        level++;
+                        console.log('correct: pass onto level' + level);
+                        //alert('You Completed level 1 - YOU WIN!! GAME OVER');
+                        getNextNum();
+                        $('.box').off('click');
+                    } else {
+                        console.log('failed at level' + level);
+                        level = 0;
+                        console.log('reset: level is now ' + level);
+                        $('.box').off('click');
+                    }
+                }); //.box click func braces
 
 // use switch case ======== set some delaytime  and then light the button for user.
 
-    switch (newNum) {
+                switch (newNum) {
 
-        case 1:
-            console.log("activate red1");
-            flash('#red1');
-            break;
+                    case 1:
+                        console.log("activate red1");
+                        flash('#red1');
+                        break;
 
-        case 2:
-            console.log("activate green2 ");
-            flash('#green2');
-            break;
+                    case 2:
+                        console.log("activate green2 ");
+                        flash('#green2');
+                        break;
 
-        case 3:
-            console.log("activate blue3 ");
-            flash('#blue3');
-            //                 $('#Blue3').animate({
-            //                     opacity : .5
-            //                 },500).animate({
-            //                     opacity : 1
-            //                 }, 500);
-            break;
+                    case 3:
+                        console.log("activate blue3 ");
+                        flash('#blue3');
+                        //                 $('#Blue3').animate({
+                        //                     opacity : .5
+                        //                 },500).animate({
+                        //                     opacity : 1
+                        //                 }, 500);
+                        break;
 
-        case 4:
-            console.log("activate yellow4 ");
-            flash('#yellow4');
-            break;
+                    case 4:
+                        console.log("activate yellow4 ");
+                        flash('#yellow4');
+                        break;
 
-        default:
-            console.log("GAME ERROR");
-    } //end of switch cases
+                    default:
+                        console.log("GAME ERROR");
+                } //end of switch cases
 
 // =========== now USER attempts to similate the array computer just put out.
 //
@@ -214,9 +220,8 @@ function getNextNum() {  //=============================>
 //    }
 //
 
-}  // get nextnum func end brace
-}); //game START Function END brace.
-
+            }  // get nextnum func end brace
+        }); //game START Function END brace.
 
 
     }); // this is end of iffe
