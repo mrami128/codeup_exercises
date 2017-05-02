@@ -126,7 +126,10 @@ function getNextNum() {  //=============================>
         var newNum = Math.floor((Math.random() * 4) + 1);
 
         computerArray.push(newNum);  //==== push this new number onto array
-
+//for array iterate=====
+            for(var i=0;i<computerArray.length ;i++){
+            console.log("number at index:"+i+" is "+computerArray[i]);}
+//======================
         console.log('computerArray New number is:' + computerArray[0]);
         console.log(' length is: ' + computerArray.length);
         $('#level').html('Level: ' + level);
