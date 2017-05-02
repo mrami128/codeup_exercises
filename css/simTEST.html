@@ -5,20 +5,21 @@
     <title>Title</title>
 <style>
     #gameBoard {
-    width: 600px;
-    height: 600px;
-    border:6px solid black;
+    width: 450px;
+    height: 450px;
+    border:8px solid black;
     margin: 50px auto;
-    position: relative;
+    /*position: relative;*/
     }
 
     #middleCircle {
-    height: 220px;
-    width: 250px;
+margin-left: 280px;
+    height: 150px;
+    width: 460px;
     background-color: black;
     /*position:absolute;*/
-    left:170px;
-    top:180px;
+    /*left:170px;*/
+    /*top:180px;*/
     }
     h1 {
     color:white;
@@ -37,22 +38,23 @@
     margin-bottom: 0px;
     text-align: center;
     position: relative;
-    top:-10px;
+    /*top:-10px;*/
     }
     h2 {
-    margin-top:5px;
+    margin-top:2px;
     color:white;
     text-align: center;
     font-family:'Oswald';
     font-size: 40px;
     }
     .square {
-    width: 300px;
-    height: 300px;
+    width: 225px;
+    height: 225px;
     float: left;
     }
     .one {
         background-color:red;
+        /*border: 1px solid black;*/
     }
     .two {
         background-color:blue;
@@ -195,14 +197,14 @@ function resetGame() {
                 marginBottom: 0,
                 paddingTop: 0
                 });
-                $('p').html('Click anywhere on circle to Start Game');
+                $('p').html('Click control panel to Start Game');
                 }
 
 
         $('#middleCircle').click(function() {
-        if(gameCheck === false){
+//        if(gameCheck === false){
         startGame();
-        }
+//        }
         });
 
 function randNum(min, max) {

@@ -104,127 +104,169 @@
         crossorigin="anonymous"></script>
 
 
-<script>
+<script>  // ===============Jquery =================
 
-    $(document).ready(function () {
-        "use strict";
-
-        function flash(element) {
-            $(element).animate({
-                opacity: .10
-            }, 800).animate({
-                opacity: 1
-            }, 800);
-        }
-
-//$('#hiScore').click(){}
+$(document).ready(function () {
+    "use strict";
 
 
-        $('#start').click(function () {
+// ======= Variable List ===================
 
-            var computerArray = [];
-            var level = 1;
+    var simonArr = [];
+    var marcArr = [];
+    var level = 0;
+    var newNum = 0;
+
+// ======= function list ===================
+
+    function youWin() {
+        console.log('this is the you Win function')
+    };
+
+    function youLose() {
+        start();
+        console.log('this is the you lose function')
+    };
+
+    function flasher(element) {
+        $(element)
+            .animate({opacity: .10}, 800)
+            .animate({opacity: 1}, 800);
+    } //this is flash end brace
+
+    function getNextNum() {
+
+        var newNum = Math.floor((Math.random() * 4) + 1);
+
+        simonArr.push(newNum);  //==== push this new number onto end of simonArr
+    }
+
+    function resetGame() {
+        simonArr = [];
+        marcArr = [];
+        level = 0;
+        nextRound();
+    }
+
+// ===== control panel button clicks ==============
+
+    $('#hiScore').click(function () {
+        alert('Simon has the Hi score');
+        youLose();
+    });
+
+    function start() {
+        $('#start').on('click', function () {
+            resetGame();
+            $('#start').off('click');
+        });
+    }
+
+    function nextRound() {
+
+        level++;   //if new game then level goes from 0to1.
+
+        if (level >= 21) {
+
+            youWin();
+
+        } else {
 
             $('#level').html('Level: ' + level);
 
-            getNextNum();
+            getNextNum();     // get next random number
 
-            function getNextNum() {  //=============================>
 
-                if (level < 20) {
+            blinkAction();    // blink  the code of simonArr
 
-                    var newNum = Math.floor((Math.random() * 4) + 1);
+            // activate the links and  allow  me to click the buttons into marcArr
 
-                    computerArray.push(newNum);  //==== push this new number onto array
-//for array iterate=====
-                    for (var i = 0; i < computerArray.length; i++) {
-                        console.log("number at index:" + i + " is " + computerArray[i]);
-                    }
-//======================
-                    console.log('computerArray New number is:' + computerArray[0]);
-                    console.log(' length is: ' + computerArray.length);
-                    $('#level').html('Level: ' + level);
+            // update the marcArr
+
+            //compare my click actions in marcArr to simonArr
+
+
+            // if good call nextRound()
+            // if nogood call youLose()
+
+        }  // else end brace
+    }  // end of nextRound() brace
+
+
+// ==== simonArr info =====
+//
+//        console.log("number at index:" + i + " is " + simonArr[i]);
+//        console.log('  simonArr consist of these numbers:' + simonArr);
+//        console.log('    length is: ' + simonArr.length);
+
+
+    //====== user clicking action =============
+
+    function userInput() {
+        var i = 0;
+        $('.box').on('click', function () {         // turn on the click listener
+
+            var btnValue = $(this).attr('data-num');
+
+            if (btnValue == simonArr[i]) {          // compare the user clicks to each simonArr element
+
+                if (i == simonArr.length - 1) {
+                    nextRound();
+                    console.log('You Completed level' + level);
+                    $('.box').off('click');         // turn off the click listener while game is presenting the simon array
 
                 } else {
-                    console.log('you have reached level 20 you win');
+                    i++;                            // cycle back to top for next user click
                 }
+            } else {                     // if user doesnt match simonArr-- turn off click and call youLose()
+                $('.box').off('click');
+                youLose();
+            }
+        });
+    }
 
-                //GET NEXtNUM end brace=========================================>
-                //====== clicking action =============
+// === Light up buttons function as switch case ===== set some delaytime  and then light the button for user.
 
+    function blinkAction() {
+        var i = 0;
+        var intervalId = setInterval(function () {
+            switch (simonArr[i]) {
 
+                case 1:
+                    console.log("activate red1");
+                    flasher('#red1');
+                    break;
 
-                $('.box').on('click', function () {
-                    var btnValue = $(this).attr('data-num');
-                    if (btnValue == computerArray[0]) {
-                        level++;
-                        console.log('correct: pass onto level' + level);
-                        //alert('You Completed level 1 - YOU WIN!! GAME OVER');
-                        getNextNum();
-                        $('.box').off('click');
-                    } else {
-                        console.log('failed at level' + level);
-                        level = 0;
-                        console.log('reset: level is now ' + level);
-                        $('.box').off('click');
-                    }
-                }); //.box click func braces
+                case 2:
+                    console.log("activate green2 ");
+                    flasher('#green2');
+                    break;
 
-// use switch case ======== set some delaytime  and then light the button for user.
+                case 3:
+                    console.log("activate blue3 ");
+                    flasher('#blue3');
+                    break;
 
-                switch (newNum) {
+                case 4:
+                    console.log("activate yellow4 ");
+                    flasher('#yellow4');
+                    break;
 
-                    case 1:
-                        console.log("activate red1");
-                        flash('#red1');
-                        break;
+                default:
+                    youLose();
+                    console.log("SYSTEM ERROR game over function");
+            }  //end of switch cases
+            if (i >= simonArr.length - 1) {
+                userInput();
+                clearInterval(intervalId);
+            } else {
+                i++;
+            }
+        }, 1800);
+    } //end of blink action
+    start();
 
-                    case 2:
-                        console.log("activate green2 ");
-                        flash('#green2');
-                        break;
-
-                    case 3:
-                        console.log("activate blue3 ");
-                        flash('#blue3');
-                        //                 $('#Blue3')
-                        //        .animate({    opacity : .5  },500)
-                        //        .animate({   opacity : 1   }, 500);
-                        //
-                        //
-                        break;
-
-                    case 4:
-                        console.log("activate yellow4 ");
-                        flash('#yellow4');
-                        break;
-
-                    default:
-                        console.log("GAME ERROR");
-                } //end of switch cases
-
-// =========== now USER attempts to similate the array computer just put out.
-//
-// if playerAction equals compArray then increase level ELSE--you fail
-//
-//               userArray==computerArray;
-//               console.log('good job-we move onto level: ' + userArray)
-//
-//   // ======== did user input match computerArray  yes or no ========
-//    var userAction=2;
-//    if (userAction == computerArray[0]){
-//         level ++;
-//         console.log('good job');
-//    }else{
-//        console.log('you failed-game over')
-//    }
-//
-
-            }  // get nextnum func end brace
-        }); //game START Function END brace.
-
-
-    }); // this is end of iffe
+}); // this is end of iffe
 </script>
 
 </body>
