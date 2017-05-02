@@ -13,14 +13,15 @@
 
         //===================
 
-    for(var i=0;  ; )
-
-        var fruits = [1,1,1,];
-
-        var newNum = Math.floor((Math.random() * 4) + 1);
-        console.log("First random number called newNum is: " + newNum);
-
-        fruits.push(newNum);
+//    for(var i=0; i < fruits.length ; i++)
+//    fruits.push('fruit' +i);
+//
+//        var fruits = [1,1,1];
+//
+//        var newNum = Math.floor((Math.random() * 4) + 1);
+//        console.log("First random number called newNum is: " + newNum);
+//
+//        fruits.push(newNum);
 
 
         //===================
@@ -28,11 +29,13 @@
 //        fruits.push("banana");   // push -onto end of array---pop delete last
 //
 //
-//        //this can generate Xqty of fruits to push into array to see if your program will break
-//        for(var i=0; i < fruits.length; i++){
-//            fruits.push('fruit'+i);
-//        }
-//
+//        // generate X qty of fruits to push to array back to see if your program will break
+        var fruits = [3,3,5,5,7,7];
+
+        for(var i=0; i < fruits.length; i++){
+            fruits.push('fruit'+i);
+        }
+
 //        //this will show the console log of fruit pushed and the index number..for testing mostly
         fruits.forEach(function (el,i)
         { console.log(el,'element at index: ',i);
