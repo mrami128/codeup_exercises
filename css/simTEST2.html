@@ -20,13 +20,13 @@
             font-size: 40px;
         }
 
-        #startGame {
+        #start {
             /*margin-left: 155px;*/
             height: 40px;
             width: 90px;
             background-color: lightgrey;
         }
-        #resetGame{
+        #hiScore{
             margin-left: 20px;
             margin-bottom: 20px;
             height: 40px;
@@ -81,13 +81,11 @@
             <h1 id="gameTitle">    Simon Game   </h1>
 
             <br>
-            <h3 id="level">Level: 1</h3>
+            <h3 id="level">Watch pattern below. <br>attempt to match that pattern</h3>
 
-            <!--<h4 id="newNum">&#45;&#45;newNum</h4>-->
-            <!--<h4 id="myInput">&#45;&#45;myInput</h4>-->
 
-        <button id="startGame">Start Game</button>
-        <button id="resetGame">Reset Game</button>
+        <button id="start">Start Game</button>
+        <button id="hiScore">Hi Score</button>
     </div>
 
     <div class="box-container">
@@ -106,101 +104,104 @@
 <script>
 
     $(document).ready(function () {
-        console.log('finished-ready');
         "use strict";
 
 
-var computerArray = [];
-var userArray = [];
-
-$('#resetGame').click(function(){
-      console.log('reset');
-      var level = 1;
-}); //end of reset function
+//$('#hiScore').click(){}
 
 
-$('#startGame').click( function() {
+$('#start').click( function() {
 
-       console.log('game started');
-       var level = 1;
-       console.log('level =' +level);
+    var computerArray = [];
+    var level = 1;
 
-//=== check the level ===============
+    $('#level').html('Level: '+level);
 
+    getNextNum();
 
-     if (level < 20) {
+function getNextNum() {  //=============================>
 
-         //generate a random number
-         var newNum = Math.floor((Math.random() * 4) + 1);
-         console.log("First random number called newNum is: " + newNum);
+        if (level < 20) {
 
-//==== push this new number onto  computerArray
+        var newNum = Math.floor((Math.random() * 4) + 1);
 
-         computerArray.push(newNum);
-         console.log('computerArray NOW includes this number:' + computerArray[0]);
+        computerArray.push(newNum);  //==== push this new number onto array
 
-        function flash(element){
-            $(element).animate({
-                opacity : .10
-            },800).animate({
-                opacity : 1
-            }, 800);
+        console.log('computerArray New number is:' + computerArray[0]);
+        console.log(' length is: ' + computerArray.length);
+        $('#level').html('Level: ' + level);
+
+    } else {
+        console.log('you have reached level 20 you win');
+    }
+
+    //GET NEXtNUM end brace=========================================>
+    //====== clicking action =============
+
+    function flash(element) {
+        $(element).animate({
+            opacity: .10
+        }, 800).animate({
+            opacity: 1
+        }, 800);
+    }
+
+    $('.box').click(function () {
+        var btnValue = $(this).attr('data-num');
+        if (btnValue == computerArray[0]) {
+            level++;
+            console.log('correct: pass onto level' + level);
+            //alert('You Completed level 1 - YOU WIN!! GAME OVER');
+            getNextNum();
+
+        } else {
+            console.log('failed at level' + level);
+            level = 0;
+            console.log('reset: level is now ' + level);
         }
+    }); //.box click func braces
 
-        $('.box').click(function(){
-            var btnValue = $(this).attr('data-num');
-            if (btnValue == computerArray[0]){
-                level ++;
-                console.log('correct: pass onto level'+level);
-                alert ('You Completed level 1 - YOU WIN!! GAME OVER');
-
-            }else {
-                console.log('failed at level'+level);
-                level=0;
-                console.log('reset: level is now '+level);
-            }
-        });
 // use switch case ======== set some delaytime  and then light the button for user.
-         switch (newNum) {
 
-             case 1:
-                 console.log("activate red1");
-                 flash('#red1');
-                 break;
+    switch (newNum) {
 
-             case 2:
-                 console.log("activate green2 ");
-                 flash('#green2');
-                 break;
+        case 1:
+            console.log("activate red1");
+            flash('#red1');
+            break;
 
-             case 3:
-                 console.log("activate blue3 ");
-                 flash('#blue3');
-//                 $('#Blue3').animate({
-//                     opacity : .5
-//                 },500).animate({
-//                     opacity : 1
-//                 }, 500);
-                 break;
+        case 2:
+            console.log("activate green2 ");
+            flash('#green2');
+            break;
 
-             case 4:
-                 console.log("activate yellow4 ");
-                 flash('#yellow4');
-                 break;
+        case 3:
+            console.log("activate blue3 ");
+            flash('#blue3');
+            //                 $('#Blue3').animate({
+            //                     opacity : .5
+            //                 },500).animate({
+            //                     opacity : 1
+            //                 }, 500);
+            break;
 
-             default:
-                 console.log("GAME ERROR");   //trigger a restart
-         }
+        case 4:
+            console.log("activate yellow4 ");
+            flash('#yellow4');
+            break;
+
+        default:
+            console.log("GAME ERROR");
+    } //end of switch cases
+
 // =========== now USER attempts to similate the array computer just put out.
-
+//
 // if playerAction equals compArray then increase level ELSE--you fail
 //
 //               userArray==computerArray;
-//
-//
 //               console.log('good job-we move onto level: ' + userArray)
-
-         // ======== did user input match computerArray  yes or no ========
+//
+//   // ======== did user input match computerArray  yes or no ========
 //    var userAction=2;
 //    if (userAction == computerArray[0]){
 //         level ++;
@@ -210,55 +211,10 @@ $('#startGame').click( function() {
 //    }
 //
 
-     }}); //game START Function END brace.
+}  // get nextnum func end brace
+}); //game START Function END brace.
 
 
-    // check level  then pick that number of rand numbers  if level 1 pick 1..if level 2 pick 2
-        //  ...add it to array.. then show it on screen on slow motion by delay action.
-     // let user
-//var Level = 1;
-//
-//var needXamt=0;
-//
-//    // if level x < 20  generate x number of new random numbers
-//    //       add these x number of new number to array.
-//    //             bleep the array numbers in order onto screen by color coded box ..blue,green,blue for ex.
-//
-// if (level < 20) {
-//
-//     for (var needXamt = 0; needXamt = level; needXamt++)
-//          var newNum = document.getElementById('newNum').innerHTML
-//              = Math.floor((Math.random() * 4) + 1);
-//     console.log("this is rand number generated newNum: " + newNum);
-//
-//     switch (newNum) {
-//
-//         case 1:
-//             console.log("activate RED1");
-//             compGenArray.push("newNum");
-//             break;
-//
-//         case 2:
-//             console.log("actvate GREEN2 25% discount");
-//             compGenArray.push("newNum");
-//             break;
-//         case 3:
-//             console.log("activ BLUE3 ");
-//             compGenArray.push("newNum");
-//             break;
-//
-//         case 4:
-//             console.log("activ yellow4 ");
-//             compGenArray.push("newNum");
-//             break;
-//         default:
-//             console.log("GAME ERROR");   //trigger a restart
-//     }
-// }else {
-//     console.log('you have reached level 20 you win');
-// }
-
-//====================
 
     }); // this is end of iffe
 </script>
