@@ -199,7 +199,7 @@ $(document).ready(function () {
 
 
             // ===========                          // blink the button that user selected - blinkAction2 function
-            blinkAction2( parseInt(btnValue) );
+            blinkAction2( parseInt(btnValue) );   // parse iot use the number below in blink array vs string
 
 
             //=================================== Compare button clicks to Simon Array elements
@@ -233,7 +233,7 @@ $(document).ready(function () {
 
     function blinkAction() {                            // this is called when blinkin Simons code
 
-        var i = 0;                                      // this var is used to cycle through simons code
+        var i = 0;                                      // this var is used to cycle through simons code-blink each color on screen
 
         var intervalId = setInterval(function () {
             blinkAction2 (simonArr[i]);
@@ -254,7 +254,7 @@ $(document).ready(function () {
 //        console.log(btnValue);
 
         switch (btnValue) {
-            case 1:
+            case 1:                     // see above -we had to parse the data-num iot see case as 1 not string'1'
                 console.log("r1");
                 flasher('#red1');
                 break;
