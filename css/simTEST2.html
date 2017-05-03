@@ -23,7 +23,7 @@
         }
 
         #gameTitle {
-            font-size: 40px;
+            font-size: 48px;
         }
 
         #start {
@@ -119,14 +119,12 @@ $(document).ready(function () {
 // ======= function list ===================
 
     function youWin() {
-        console.log('this is the you Win function');
         $('#level').html('YOU WIN !! Level: ' + level);
     };
 
     function youLose() {
         start();
         $('#level').html('YOU LOSE !! Level: ' + level);
-        console.log('this is the you lose function')
     };
 
     function flasher(element) {
@@ -141,6 +139,11 @@ $(document).ready(function () {
         var newNum = Math.floor((Math.random() * 4) + 1);
 
         simonArr.push(newNum);  //==== push this new number onto end of simonArr
+
+             // ==== simonArr info =============================
+             //        console.log("number at index:" + i + " is " + simonArr[i]);
+             //        console.log('  simonArr consist of these numbers:' + simonArr);
+             //        console.log('    length is: ' + simonArr.length);
     }
 
     function resetGame() {
@@ -179,31 +182,21 @@ $(document).ready(function () {
 
             getNextNum();     // get next random number
 
-            blinkAction();    // blink  the code of simonArr
+            blinkAction();    // blink the code of simonArr
+        }
+    }
 
-            // activate the links and  allow  me to click the buttons into marcArr -see below
-
-        }  // else end brace
-    }  // end of nextRound() brace
-
-
-// ==== simonArr info =============================
-//
-//        console.log("number at index:" + i + " is " + simonArr[i]);
-//        console.log('  simonArr consist of these numbers:' + simonArr);
-//        console.log('    length is: ' + simonArr.length);
-//
-// ==== user Click and Compare Action =============
+// ==== user Clicks and Compare Action =============
 
     function userInput() {
         var i = 0;
         $('.box').on('click', function () {         // turn on the click listener so user can click
 
-            //========xx========xx======xx when user clicks Flash dont work and blink causes double flash for simon number
+            //===== xx ===== xx ==== xx == when user clicks Flash doesnt work and blink causes DOUBLE flashing of simonArr code
 
             var btnValue = $(this).attr('data-num');
 
-            if (btnValue == simonArr[i]) {          // compares each user click to each simonArr element
+            if (btnValue == simonArr[i]) {          // compares user click to single simonArr element then cycles through
 
                 if (i == simonArr.length - 1) {
                     nextRound();
