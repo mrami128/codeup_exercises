@@ -225,7 +225,7 @@ $(document).ready(function () {
                 if (i == simonArr.length - 1) {         // THEN..if user click = array item #1...THEN check SIMON array length.
 
                  //=======================================================
-                    $('#level').html('You are on Level: ' +level );     // if ALL GOOD (clicks = array) length then next level
+                    $('#level').html('Level Complete.');     // if ALL GOOD (clicks = array) length then next level
 
                     $('.box').off('click');                             // turn off  click listener while game is presenting the simon array
                     setTimeout(nextRound, 1000);
