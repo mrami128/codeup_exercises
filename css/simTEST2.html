@@ -115,6 +115,7 @@ $(document).ready(function () {
     var marcArr = [];
     var level = 0;
     var newNum = 0;
+    var btnValue =0;
 
 // ======= function list ===================
 
@@ -127,18 +128,17 @@ $(document).ready(function () {
         $('#level').html('YOU LOSE !! Level: ' + level);
     };
 
-    function flasher(element) {
+    function flasher(element) {                             // This is used in the blink action function
         $(element)
             .animate({opacity: .40}, 150)
             .animate({opacity: 1}, 150);
-//        console.log('flasher func activated');
     }
 
-    function getNextNum() {
+    function getNextNum() {                                 // This gets the RANDOM number 1-4
 
         var newNum = Math.floor((Math.random() * 4) + 1);
 
-        simonArr.push(newNum);  //==== push this new number onto end of simonArr
+        simonArr.push(newNum);                              //==== push this new number onto end of simonArr
 
              // ==== simonArr info =============================
              //        console.log("number at index:" + i + " is " + simonArr[i]);
@@ -146,69 +146,86 @@ $(document).ready(function () {
              //        console.log('    length is: ' + simonArr.length);
     }
 
-    function resetGame() {
+
+// ===== GAME START ==============
+
+    $('#hiScore').click(function () {               // High score button
+        alert('Simon Always Has the Hi score');
+        youLose();
+    });
+
+    function start() {                              // START Button -sends game into RESET()
+        $('#start').on('click', function () {
+            resetGame();
+            $('#start').off('click');               // start button now turns OFF until game ends
+        });
+    }
+
+    function resetGame() {                          // reset func Clears all  variables then goes into NEXT ROUND ()
         simonArr = [];
         marcArr = [];
         level = 0;
         nextRound();
     }
-
-// ===== control panel button clicks ==============
-
-    $('#hiScore').click(function () {
-        alert('Simon has the Hi score');
-        youLose();
-    });
-
-    function start() {
-        $('#start').on('click', function () {
-            resetGame();
-            $('#start').off('click');   //turns off start button til game ends
-        });
-    }
-//=================================================
+    //============================================= NEXT Round Function ========
 
     function nextRound() {
 
-        level++;   //if new game then level goes from 0to1.
+        // ==========xx ======xx SET DELAY between levels here
 
-        if (level >= 21) {
 
-            youWin();
+        // ==========xx========xx ===========================
 
-        } else {
+        level++;                                    // increase LEVEL +1.
+
+        if (level >= 21) {                          // checks level less than 20 ?
+
+            youWin();                                    // if level 20 YOU WIN
+
+        } else {                                         // if below level 20 --> MOVE forward
 
             $('#level').html('Level: ' + level);
 
-            getNextNum();     // get next random number
+            getNextNum();                               // get next random number
 
-            blinkAction();    // blink the code of simonArr
+            blinkAction();                              // blink the code of simonArr
         }
     }
 
-// ==== user Clicks and Compare Action =============
+// ===================================== USER INPUT function
 
     function userInput() {
-        var i = 0;
-        $('.box').on('click', function () {         // turn on the click listener so user can click
 
-            //===== xx ===== xx ==== xx == when user clicks Flash doesnt work and blink causes DOUBLE flashing of simonArr code
+        var i = 0;                                    // this var i - is used below for cycling through Simon ARR elements
 
-            var btnValue = $(this).attr('data-num');
+        $('.box').on('click', function () {             // turn on  buttons - Listening for user click
 
-            if (btnValue == simonArr[i]) {          // compares user click to single simonArr element then cycles through
+            var btnValue = $(this).attr('data-num');    // save the USER click in btnValue
 
-                if (i == simonArr.length - 1) {
-                    nextRound();
 
-                    $('#level').html('You are on Level: ' +level );
+         // ===========                          // blink the button that user selected - blinkAction2 function
+            blinkAction2( btnValue );
 
-                    $('.box').off('click');        // turn off the click listener while game is presenting the simon array
 
-                } else {
-                    i++;                           // cycle back to top for next user click check agnst simonArr
+ //=================================== Compare button clicks to Simon Array elements
+
+            if (btnValue == simonArr[i]) {               // 1st compare the user click to Simon Array element #1
+
+                if (i == simonArr.length - 1) {         // THEN..if user click = array item #1...THEN check SIMON array length.
+
+                 //==================================================================================
+                    $('#level').html('You are on Level: ' +level );     // if ALL GOOD (clicks = array) length then next level
+
+                    $('.box').off('click');                             // turn off  click listener while game is presenting the simon array
+
+                    nextRound();                                        // goto new random number - push onto Simom ARRAY
+
+                 //====================================
+
+                } else {                            // if ARRAY has more than 1 element -then increase i++ cycle again for next user click
+                    i++;
                 }
-            } else {                               // if user doesnt match simonArr-- turn off click and call youLose()
+            } else {                               // if USER Click not = Array element --turn off clicker & goto youLose()
                 $('.box').off('click');
                 youLose();
             }
@@ -220,6 +237,7 @@ $(document).ready(function () {
     function blinkAction() {
         var i = 0;
         var intervalId = setInterval(function () {
+
             switch (simonArr[i]) {
 
                 case 1:
@@ -243,8 +261,8 @@ $(document).ready(function () {
                     break;
 
                 default:
-                    youLose();
                     console.log("SYSTEM ERROR goto game over function");
+                    youLose();
             }  //end of switch cases
             if (i >= simonArr.length - 1) {
                 userInput();
@@ -255,7 +273,39 @@ $(document).ready(function () {
         }, 400);
     } //end of blink action
     start();
+// =============== ============ ========= This BLINKS the user selected buttons
 
+    function blinkAction2(btnValue) {       // to flash button user just clicked -- feed in btnValue
+//        console.log(btnValue);
+
+        switch (btnValue) {
+                case '1':
+                    console.log("r1");
+                    flasher('#red1');
+                    break;
+
+                case '2':
+                    console.log("g2");
+                    flasher('#green2');
+                    break;
+
+                case '3':
+                    console.log("b3");
+                    flasher('#blue3');
+                    break;
+
+                case '4':
+                    console.log("y4 ");
+                    flasher('#yellow4');
+                    break;
+
+                default:
+                    console.log("ERROR in the blink2 Switch Cases");
+            }                               //end of switch cases
+    }                                       //end of blink action 2
+
+
+// ============= =========== ===============
 }); // this is end of iffe
 </script>
 
