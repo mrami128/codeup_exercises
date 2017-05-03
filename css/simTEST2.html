@@ -6,10 +6,13 @@
 
     <style>
         .container {
-            width: 450px;
-            border: 1px solid red;
-            margin-left: 25px;
+            width: 430px;
+            border: 2px solid green;
+            margin-left: 20px;
             padding-left: 25px;
+            margin-top: 15px;
+            padding-top: 25px;
+            padding-bottom: 25px;
 
         }
 
@@ -44,13 +47,13 @@
         }
 
         .box { /*class for each indiv box red blue green  yellow below*/
-            width: 100px;
-            height: 100px;
-            border: 2px solid grey;
-            margin-top: 40px;
-            margin-left: 30px;
-            margin-right: 20px;
-            padding: 20px;
+            width: 115px;
+            height: 115px;
+            border: 3px solid grey;
+            margin-top: 20px;
+            margin-left: 15px;
+            margin-right: 10px;
+            padding: 25px;
             float: left; /* float left gets all the divs to line up sideways until contain full then moves downrow */
             font-size: 14px;
         }
@@ -88,10 +91,10 @@
     </div>
 
     <div class="box-container">
-        <div id="red1" class="box" data-num="1"> red1</div>
-        <div id="green2" class="box" data-num="2"> green2</div>
-        <div id="blue3" class="box" data-num="3"> blue3</div>
-        <div id="yellow4" class="box" data-num="4"> yellow4</div>
+        <div id="red1" class="box" data-num="1"> </div>
+        <div id="green2" class="box" data-num="2"> </div>
+        <div id="blue3" class="box" data-num="3"> </div>
+        <div id="yellow4" class="box" data-num="4"> </div>
     </div>
 </div>
 
@@ -116,9 +119,8 @@ $(document).ready(function () {
 // ======= function list ===================
 
     function youWin() {
-        console.log('this is the you Win function')
+        console.log('this is the you Win function');
         $('#level').html('YOU WIN !! Level: ' + level);
-
     };
 
     function youLose() {
@@ -129,8 +131,9 @@ $(document).ready(function () {
 
     function flasher(element) {
         $(element)
-            .animate({opacity: .40}, 200)
-            .animate({opacity: 1}, 200);
+            .animate({opacity: .40}, 150)
+            .animate({opacity: 1}, 150);
+//        console.log('flasher func activated');
     }
 
     function getNextNum() {
@@ -160,6 +163,7 @@ $(document).ready(function () {
             $('#start').off('click');   //turns off start button til game ends
         });
     }
+//=================================================
 
     function nextRound() {
 
@@ -175,48 +179,50 @@ $(document).ready(function () {
 
             getNextNum();     // get next random number
 
-
             blinkAction();    // blink  the code of simonArr
 
-            // activate the links and  allow  me to click the buttons into marcArr
-
+            // activate the links and  allow  me to click the buttons into marcArr -see below
 
         }  // else end brace
     }  // end of nextRound() brace
 
 
-// ==== simonArr info =====
+// ==== simonArr info =============================
 //
 //        console.log("number at index:" + i + " is " + simonArr[i]);
 //        console.log('  simonArr consist of these numbers:' + simonArr);
 //        console.log('    length is: ' + simonArr.length);
 //
-// ==== user clicking action =============
+// ==== user Click and Compare Action =============
 
     function userInput() {
         var i = 0;
-        $('.box').on('click', function () {         // turn on the click listener
+        $('.box').on('click', function () {         // turn on the click listener so user can click
+
+            //========xx========xx======xx when user clicks Flash dont work and blink causes double flash for simon number
 
             var btnValue = $(this).attr('data-num');
 
-            if (btnValue == simonArr[i]) {          // compare the user clicks to each simonArr element
+            if (btnValue == simonArr[i]) {          // compares each user click to each simonArr element
 
                 if (i == simonArr.length - 1) {
                     nextRound();
-                    console.log('You Completed level' + level);
-                    $('.box').off('click');         // turn off the click listener while game is presenting the simon array
+
+                    $('#level').html('You are on Level: ' +level );
+
+                    $('.box').off('click');        // turn off the click listener while game is presenting the simon array
 
                 } else {
-                    i++;                            // cycle back to top for next user click
+                    i++;                           // cycle back to top for next user click check agnst simonArr
                 }
-            } else {                     // if user doesnt match simonArr-- turn off click and call youLose()
+            } else {                               // if user doesnt match simonArr-- turn off click and call youLose()
                 $('.box').off('click');
                 youLose();
             }
         });
     }
 
-// === Light up buttons function as switch case ===== set some delaytime  and then light the button for user.
+// === Light up buttons for simonArr -use Switch Case ===== set some delaytime  and then light the button for user.
 
     function blinkAction() {
         var i = 0;
@@ -245,7 +251,7 @@ $(document).ready(function () {
 
                 default:
                     youLose();
-                    console.log("SYSTEM ERROR game over function");
+                    console.log("SYSTEM ERROR goto game over function");
             }  //end of switch cases
             if (i >= simonArr.length - 1) {
                 userInput();
@@ -253,7 +259,7 @@ $(document).ready(function () {
             } else {
                 i++;
             }
-        }, 1800);
+        }, 400);
     } //end of blink action
     start();
 
