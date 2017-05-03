@@ -209,11 +209,11 @@ $(document).ready(function () {
                 if (i == simonArr.length - 1) {         // THEN..if user click = array item #1...THEN check SIMON array length.
 
                     //=======================================================
-                    $('#level').html('You are on Level: ' +level );     // if ALL GOOD (clicks = array) length then next level
+                    $('#level').html(' Level Complete. ');     // if ALL GOOD (clicks = array) length then next level
 
                     $('.box').off('click');                             // turn off  click listener while game is presenting the simon array
 
-                    setTimeout(nextRound, 1000);
+                    setTimeout(nextRound, 1800);
 //                                                          // goto new random number - push onto Simom ARRAY
 
                     //=======================================================
@@ -275,7 +275,6 @@ $(document).ready(function () {
                 break;
 
             default:
-                console.log("ERROR in the blink2 Switch Cases");
         }                               //end of switch cases
     }                                       //end of blink action 2
 
