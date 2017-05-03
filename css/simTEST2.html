@@ -215,7 +215,7 @@ $(document).ready(function () {
 
 
          // ===========                          // blink the button that user selected - blinkAction2 function
-            blinkAction2( parseInt(btnValue) );
+            blinkAction2( btnValue );
 
 
  //=================================== Compare button clicks to Simon Array elements
@@ -228,9 +228,8 @@ $(document).ready(function () {
                     $('#level').html('You are on Level: ' +level );     // if ALL GOOD (clicks = array) length then next level
 
                     $('.box').off('click');                             // turn off  click listener while game is presenting the simon array
-
                     setTimeout(nextRound, 1000);
-//                                                          // goto new random number - push onto Simom ARRAY
+//                    nextRound();                                        // goto new random number - push onto Simom ARRAY
 
                  //=======================================================
 
@@ -244,19 +243,38 @@ $(document).ready(function () {
         });
     }
 
-// === Light up buttons for the simonArr -use Switch Case ===== set some delaytime  and then light the button for user.
+// === Light up buttons for simonArr -use Switch Case ===== set some delaytime  and then light the button for user.
 
     function blinkAction() {
         var i = 0;
         var intervalId = setInterval(function () {
-            blinkAction2 (simonArr[i]);
 
+            switch (simonArr[i]) {
 
+                case 1:
+                    console.log("activate red1");
+                    flasher('#red1');
+                    break;
 
+                case 2:
+                    console.log("activate green2 ");
+                    flasher('#green2');
+                    break;
 
+                case 3:
+                    console.log("activate blue3 ");
+                    flasher('#blue3');
+                    break;
 
+                case 4:
+                    console.log("activate yellow4 ");
+                    flasher('#yellow4');
+                    break;
 
-            if (i >= simonArr.length - 1) {
+                default:
+            }  //end of switch cases
+
+            if (i >= simonArr.length - 1) {      // this allows simon code to show array by blinks
                 userInput();
                 clearInterval(intervalId);
             } else {
@@ -271,28 +289,28 @@ $(document).ready(function () {
 //        console.log(btnValue);
 
         switch (btnValue) {
-                case 1:
+                case '1':
                     console.log("r1");
                     flasher('#red1');
                     break;
 
-                case 2:
+                case '2':
                     console.log("g2");
                     flasher('#green2');
                     break;
 
-                case 3:
+                case '3':
                     console.log("b3");
                     flasher('#blue3');
                     break;
 
-                case 4:
+                case '4':
                     console.log("y4 ");
                     flasher('#yellow4');
                     break;
 
                 default:
-                    console.log("ERROR in the blink2 Switch Cases");
+
             }                               //end of switch cases
     }                                       //end of blink action 2
 
